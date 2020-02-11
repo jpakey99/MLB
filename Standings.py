@@ -12,6 +12,8 @@ Future Improvements:
     Be able to grab the teams that made the playoffs
 """
 class Standings:
+    teams = {108:'LAA', 109:'ARI', 110:'BAL', 110:'BAL', 111:'BAL', 112:'CHI', 113:'CIN', 114:'CLE', 115:'COL', 116:'DET', 117:'HOU', 118:'KC', 119:'LAD', 120:'WSH', 121:'NYM', 133:'OAK', 134:'PIT', 135:'SD', 136:'SEA', 137:'SF', 138:'STL', 139:'TB', 140:'TEX', 141:'TOR', 142:'MIN', 143:'PHI', 144:'ATL', 145:'CWS', 146:'MIA', 147:'NYY', 158:'MIL'}
+    
     def __init__(self):
         self.records = {}
     
@@ -66,11 +68,24 @@ class Standings:
     """
     prints the divisional standings.  could use this method to print the other type of standings as well
     """
-    def print_standings(self):
+    def print_standings(self, league=False, wildcard=False, division=True):
         #TODO make team abbriviations be printed instead of team IDs
-        print("AL EAST\t\t", self.al_east)
-        print("AL CENTRAL\t", self.al_cent)
-        print("AL WEST\t\t", self.al_west)
-        print("NL EAST\t\t", self.nl_east)
-        print("NL CENTRAL\t", self.nl_cent)
-        print("NL WEST\t\t", self.nl_west)
+        if division == True:
+            print("AL EAST")
+            for tid, win in self.al_east:
+                print(self.teams[tid], "\t", win)
+            print("AL CENTRAL")
+            for tid, win in self.al_cent:
+                print(self.teams[tid], "\t", win)
+            print("AL WEST")
+            for tid, win in self.al_west:
+                print(self.teams[tid], "\t", win)
+            print("NL EAST")
+            for tid, win in self.nl_east:
+                print(self.teams[tid], "\t", win)
+            print("NL CENTRAL")
+            for tid, win in self.nl_cent:
+                print(self.teams[tid], "\t", win)
+            print("NL WEST")
+            for tid, win in self.nl_west:
+                print(self.teams[tid], "\t", win)
