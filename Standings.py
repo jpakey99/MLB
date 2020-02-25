@@ -12,20 +12,38 @@ Future Improvements:
     Be able to grab the teams that made the playoffs
 """
 class Standings:
-    teams = {108:'LAA', 109:'ARI', 110:'BAL', 110:'BAL', 111:'BAL', 112:'CHI', 113:'CIN', 114:'CLE', 115:'COL', 116:'DET', 117:'HOU', 118:'KC', 119:'LAD', 120:'WSH', 121:'NYM', 133:'OAK', 134:'PIT', 135:'SD', 136:'SEA', 137:'SF', 138:'STL', 139:'TB', 140:'TEX', 141:'TOR', 142:'MIN', 143:'PHI', 144:'ATL', 145:'CWS', 146:'MIA', 147:'NYY', 158:'MIL'}
+    teams = {108:'LAA', 109:'ARI', 110:'BAL', 110:'BOS', 111:'BAL', 112:'CHI', 113:'CIN', 114:'CLE', 115:'COL', 116:'DET', 117:'HOU', 118:'KC', 119:'LAD', 120:'WSH', 121:'NYM', 133:'OAK', 134:'PIT', 135:'SD', 136:'SEA', 137:'SF', 138:'STL', 139:'TB', 140:'TEX', 141:'TOR', 142:'MIN', 143:'PHI', 144:'ATL', 145:'CWS', 146:'MIA', 147:'NYY', 158:'MIL'}
     
     def __init__(self):
         self.records = {}
+        self.games_played = {}
     
     """
     increments the win total of the team that is passed in.
     winningTeam: team ID, not any other team identifier
     """
-    def add_win(self, winningTeam):
+    def add_win(self, winningTeam, losing_team=None):
         if winningTeam in self.records:
             self.records[winningTeam] += 1
         else:
             self.records[winningTeam] = 1
+        
+        if losing_team != None:
+            if winningTeam in self.games_played:
+                self.games_played[winningTeam] += 1
+            else:
+                self.games_played[winningTeam] = 1
+            if losing_team in self.games_played:
+                self.games_played[losing_team] += 1
+            else:
+                self.games_played[losing_team] = 1
+            
+
+    def get_info(self, team):
+        info = []
+        info[0] = records[team]
+        info[1] = games_played[team]
+        return info
 
     """
     A helper function to get the divisional records for an individual division
@@ -58,18 +76,11 @@ class Standings:
         nl_west = self.get_division_standings(109, 115, 119, 135, 137)
         self.nl_west = sorted(nl_west.items(), key=lambda x: x[1], reverse=True)
 
-    """
-    helper function that is currently not used.  Strong case for deletion soon
-    """
-    def sort_divsional_standings(self, division):
-        sorted_division = sorted(division.items(), key=lambda x: x[1], reverse=True)
-        return sorted_division
 
     """
     prints the divisional standings.  could use this method to print the other type of standings as well
     """
     def print_standings(self, league=False, wildcard=False, division=True):
-        #TODO make team abbriviations be printed instead of team IDs
         if division == True:
             print("AL EAST")
             for tid, win in self.al_east:
