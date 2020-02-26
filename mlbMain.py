@@ -11,11 +11,11 @@ def get_schedule(startdate, enddate):
 def simSeason():
     schedule = get_schedule('03/26/2020', '09/28/2020')
     standings = Standings.Standings()
-    
+
     for games in schedule:
-        game = lSim.LaplaceSim(games['home_id'], games['away_id'])
-        game.run_simulation()
-        standings.add_win(game.winning_team, losing_team=game.losing_team)
+        if games['home_id'] != 160:
+            game = lSim.LaplaceSim(games, standings)
+            standings = game.run_simulation()
     standings.create_divisions()
     standings.print_standings()
 

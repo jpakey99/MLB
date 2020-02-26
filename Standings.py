@@ -27,7 +27,7 @@ class Standings:
             self.records[winningTeam] += 1
         else:
             self.records[winningTeam] = 1
-        
+
         if losing_team != None:
             if winningTeam in self.games_played:
                 self.games_played[winningTeam] += 1
@@ -38,11 +38,10 @@ class Standings:
             else:
                 self.games_played[losing_team] = 1
             
-
     def get_info(self, team):
-        info = []
-        info[0] = records[team]
-        info[1] = games_played[team]
+        info = [0, 0]
+        info[0] = self.records[team]
+        info[1] = self.games_played[team]
         return info
 
     """
