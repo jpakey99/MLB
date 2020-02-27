@@ -2,6 +2,7 @@ from random import seed
 from random import random
 import statsapi
 import Standings
+import math
 
 
 class LaplaceSim:
@@ -19,11 +20,11 @@ class LaplaceSim:
         - at first, just run 50/50 odds until each team has played
         - grab the wins and total games of a team and compute the Laplace number
         - Run the simulation"""
-        laplace = .5
+        laplace = .55
 
         date = self.game['game_date'].split('-')
         if date[1] == '03' or date[1] == '04':
-            if random() < .5:
+            if random() < .45:
                 self.standings.add_win(self.away_team, self.home_team)
                 self.losing_team = self.home_team
             else:
@@ -40,9 +41,9 @@ class LaplaceSim:
             away_laplace = away_wins / away_games
 
             if home_laplace > away_laplace:
-                laplace = laplace - (home_laplace - away_laplace)
+                laplace = math.fabs(laplace - (home_laplace - away_laplace))
             else:
-                laplace = laplace + (away_laplace - home_laplace)
+                laplace = math.fabs(laplace + (away_laplace - home_laplace))
             if random() < laplace:
                 self.standings.add_win(self.away_team, self.home_team)
                 self.losing_team = self.home_team

@@ -117,8 +117,8 @@ def simSeason():
         wold_series_champion = standings.al_seeding[0][0]
     print("The World Series Champion: ", standings.teams[wold_series_champion])
 
+def main():
+    simSeason()
 
 
-
-simSeason()
-
+main()
