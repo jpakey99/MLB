@@ -75,6 +75,22 @@ class Standings:
         nl_west = self.get_division_standings(109, 115, 119, 135, 137)
         self.nl_west = sorted(nl_west.items(), key=lambda x: x[1], reverse=True)
 
+    def sort_key(self, item):
+        """Helper function so sorting works out nice and easy"""
+        return item[1]
+
+    def playoff_seeding(self):
+        """Grabs the seeding for the playoffs.  Have to grab the division winners and then the top two of the remaining teams from each league"""
+        al_div_winners = [self.al_east[0], self.al_cent[0], self.al_west[0]]
+        al_standings = self.al_east[1:5] + self.al_west[1:5] + self.al_cent[1:5]
+        nl_div_winners = [self.nl_cent[0], self.nl_east[0], self.nl_west[0]]
+        nl_standings = self.nl_east[1:5] + self.nl_west[1:5] + self.nl_cent[1:5]
+        al_div_winners.sort(reverse=True, key=self.sort_key)
+        al_standings.sort(reverse=True, key=self.sort_key)
+        self.al_seeding = al_div_winners + al_standings[0:2]
+        nl_div_winners.sort(reverse=True, key=self.sort_key)
+        nl_standings.sort(reverse=True, key=self.sort_key)
+        self.nl_seeding = nl_div_winners + nl_standings[0:2]
 
     """
     prints the divisional standings.  could use this method to print the other type of standings as well

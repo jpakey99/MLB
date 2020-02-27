@@ -25,8 +25,10 @@ class LaplaceSim:
         if date[1] == '03' or date[1] == '04':
             if random() < .5:
                 self.standings.add_win(self.away_team, self.home_team)
+                self.losing_team = self.home_team
             else:
                 self.standings.add_win(self.home_team, self.away_team)
+                self.losing_team = self.away_team
         else:
             home_info = self.standings.get_info(self.home_team)
             away_info = self.standings.get_info(self.away_team)
@@ -41,9 +43,10 @@ class LaplaceSim:
                 laplace = laplace - (home_laplace - away_laplace)
             else:
                 laplace = laplace + (away_laplace - home_laplace)
-
             if random() < laplace:
                 self.standings.add_win(self.away_team, self.home_team)
+                self.losing_team = self.home_team
             else:
                 self.standings.add_win(self.home_team, self.away_team)
+                self.losing_team = self.away_team
         return self.standings
