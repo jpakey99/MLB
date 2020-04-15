@@ -200,7 +200,7 @@ def get_batting_order():
             batters[i] = Player(name, batters[(i + 1)])
     name = 'batter0'
     batters[0] = Player(name, batters[1])
-    batters[8].next_batter = batters[0]
+    batters[8].next_batter = batters[1]
     return batters
 
 
