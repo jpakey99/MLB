@@ -18,4 +18,12 @@ public class Player {
     public int getTeamId(){
         return this.teamId;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "player Id: " + playerId +
+                ", plays for team: " + teamId +
+                '}';
+    }
 }
