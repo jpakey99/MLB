@@ -18,4 +18,11 @@ public class Team {
     public BattingOrder getBattingOrder() {
         return battingOrder;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "team Id: " + teamId +
+                '}';
+    }
 }
