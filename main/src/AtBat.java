@@ -20,7 +20,6 @@ public class AtBat {
     public void simAtBat(){
         Random rand = new Random();
         float random = rand.nextFloat();
-
         if(random >= .3527){
             result = AtBatResult.OUT;
         }

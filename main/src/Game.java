@@ -74,6 +74,7 @@ public class Game {
             while(outs < 3){
                 Player batter = currentBattingOrder.getBatter();
                 AtBat atBat = new AtBat(batter);
+                atBat.simAtBat();
                 AtBatResult result = atBat.getResult();
 
                 if(result == AtBatResult.OUT){
@@ -90,8 +91,8 @@ public class Game {
             else{
                 homeScore = runs;
                 topOfInning = true;
+                inning++;
             }
-            inning++;
             basePaths.clearBasePaths();
         }
         completed = true;

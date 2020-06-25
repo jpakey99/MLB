@@ -8,6 +8,9 @@ public class BattingOrder {
     }
 
     public void incrementOrder(){
+        if(index > 7){
+            this.index = 0;
+        }
         this.index++;
     }
 
