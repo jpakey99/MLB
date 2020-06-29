@@ -12,14 +12,16 @@ def get_schedule():
 
 def games_to_csv(games):
     f = open("games.csv", 'w')
-    heading = "'game_id', 'game_date', 'away_name', 'home_name'\n"
+    heading = "'gameId', 'gameDate', 'awayId', 'awayName', 'homeId', 'homeName'\n"
     f.write(heading)
     for game in games.values():
-        id = game['game_id']
+        id = str(game['game_id'])
         date = game['game_date']
+        away_id = str(game['away_id'])
         away_name = game['away_name']
+        home_id = str(game['home_id'])
         home_name = game['home_name']
-        buffer = str(id) + ',' + date + ',' + away_name + ',' + home_name + "\n"
+        buffer = id + ',' + date + ',' + away_id + ',' + away_name + ',' + home_id + ',' + home_name + "\n"
         f.write(buffer)
 
     f.flush()
@@ -30,17 +32,22 @@ def create_dict(games, id):
     games[id] = {
         'game_id': 1,
         'game_date': '',
+        'away_id' : 0,
         'away_name': '',
+        'home_id': 0,
         'home_name': ''
     }
 
 
-def add_to_dict(games, game_id, game_date, away_name, home_name):
+def add_to_dict(games, game_id, game_date, away_name, home_name, away_id, home_id):
     create_dict(games, game_id)
     games[game_id]['game_id'] = game_id
     games[game_id]['game_date'] = game_date
     games[game_id]['away_name'] = away_name
     games[game_id]['home_name'] = home_name
+    games[game_id]['home_id'] = home_id
+    games[game_id]['away_id'] = away_id
+
 
 
 def get_csv_schedule():
@@ -50,7 +57,7 @@ def get_csv_schedule():
 
     for game in schedule:
         id = game['game_id']
-        add_to_dict(games, id, game['game_date'], game['away_name'], game['home_name'])
+        add_to_dict(games, id, game['game_date'], game['away_name'], game['home_name'], game['away_id'], game['home_id'] )
 
 
     games_to_csv(games)
