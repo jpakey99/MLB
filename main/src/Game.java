@@ -5,14 +5,16 @@ public class Game implements GameInterface{
     private int homeScore;
     private int awayScore;
     private Team winningTeam;
+    private int gameId;
 
-    public Game(Team homeTeam, Team awayTeam){
+    public Game(Team homeTeam, Team awayTeam, int gameId){
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.completed = false;
         this.awayScore = 0;
         this.homeScore = 0;
         this.winningTeam = null;
+        this.gameId = gameId;
     }
     public Team getHomeTeam() {
         return homeTeam;

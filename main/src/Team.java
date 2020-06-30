@@ -1,10 +1,12 @@
 public class Team {
     private int teamId;
+    private String teamName;
     private BattingOrder battingOrder;
 
-    public Team(int teamId, BattingOrder battingOrder){
+    public Team(int teamId, BattingOrder battingOrder, String teamName){
         this.teamId = teamId;
         this.battingOrder = battingOrder;
+        this.teamName = teamName;
     }
 
     public int getTeamId() {
@@ -21,8 +23,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "team Id: " + teamId +
-                '}';
+        return teamName + " : " + teamId;
     }
 }
