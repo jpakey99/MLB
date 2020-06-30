@@ -1,4 +1,4 @@
-public class Game {
+public class Game implements GameInterface{
     private Team homeTeam;
     private Team awayTeam;
     private boolean completed;
