@@ -2,11 +2,13 @@ public class Team {
     private int teamId;
     private String teamName;
     private BattingOrder battingOrder;
+    private Divisions division;
 
-    public Team(int teamId, BattingOrder battingOrder, String teamName){
+    public Team(int teamId, BattingOrder battingOrder, String teamName, Divisions division){
         this.teamId = teamId;
         this.battingOrder = battingOrder;
         this.teamName = teamName;
+        this.division = division;
     }
 
     public int getTeamId() {
@@ -21,8 +23,12 @@ public class Team {
         return battingOrder;
     }
 
+    public Divisions getDivision(){
+        return division;
+    }
+
     @Override
     public String toString() {
-        return teamName + " : " + teamId;
+        return teamName;
     }
 }

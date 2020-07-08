@@ -1,13 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class csvFileReader  {
-     public HashSet<Game> readSchedule(HashMap<Integer, Team> teams){
+     public Schedule readSchedule(HashMap<Integer, Team> teams){
          File file = new File("C:\\Users\\jpake\\Documents\\MLB\\games.csv");
-         HashSet<Game> schedule = new HashSet<>();
+         ArrayList<Game> schedule = new ArrayList<>();
          try {
              Scanner scanner = new Scanner(file);
              scanner.nextLine();
@@ -25,6 +26,6 @@ public class csvFileReader  {
          } catch (FileNotFoundException e) {
              e.printStackTrace();
          }
-         return schedule;
+         return new Schedule(schedule);
      }
 }

@@ -16,6 +16,11 @@ public class Game implements GameInterface{
         this.winningTeam = null;
         this.gameId = gameId;
     }
+
+    public int getGameId() {
+        return gameId;
+    }
+
     public Team getHomeTeam() {
         return homeTeam;
     }
@@ -99,5 +104,15 @@ public class Game implements GameInterface{
         }
         completed = true;
         setWinningTeam();
+    }
+
+    @Override
+    public String toString() {
+        if(this.completed){
+            return this.gameId + " " + awayTeam + ":" + awayScore + " @ " + homeTeam + ":" + homeScore;
+        }
+        else{
+            return this.gameId + " " + awayTeam + " @ " + homeTeam;
+        }
     }
 }
