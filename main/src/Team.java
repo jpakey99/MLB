@@ -1,5 +1,8 @@
+import java.util.Comparator;
+
 public class Team {
     private int teamId;
+    private int wins;
     private String teamName;
     private BattingOrder battingOrder;
     private Divisions division;
@@ -9,6 +12,19 @@ public class Team {
         this.battingOrder = battingOrder;
         this.teamName = teamName;
         this.division = division;
+        this.wins = 0;
+    }
+
+    public int getWins(){
+        return wins;
+    }
+
+    public void updateWins(){
+        this.wins += 1;
+    }
+
+    public String getTeamName(){
+        return this.teamName;
     }
 
     public int getTeamId() {
@@ -30,5 +46,13 @@ public class Team {
     @Override
     public String toString() {
         return teamName;
+    }
+
+    public boolean equals(Object o){
+        if(o instanceof Team){
+            Team team = (Team)o;
+            return team.teamId == this.teamId;
+        }
+        return false;
     }
 }
