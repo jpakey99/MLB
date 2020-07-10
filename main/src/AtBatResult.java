@@ -1,9 +1,3 @@
-public enum AtBatResult {
-    OUT,
-    WALK,
-    SINGLE,
-    DOUBLE,
-    TRIPLE,
-    HOMERUN,
-    NONE
+public interface AtBatResult {
+    public int handleResult(BasePaths basePaths);
 }

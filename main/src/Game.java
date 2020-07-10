@@ -84,11 +84,11 @@ public class Game implements GameInterface{
                 atBat.simAtBat();
                 AtBatResult result = atBat.getResult();
 
-                if(result == AtBatResult.OUT){
+                if(result instanceof Out){
                     outs++;
                 }
                 else{
-                    runs += basePaths.handleEvent(batter, result);
+                    runs += result.handleResult(basePaths);
                 }
             }
             if(topOfInning){

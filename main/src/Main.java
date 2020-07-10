@@ -58,11 +58,9 @@ public class Main {
 
         Standings standings = new Standings(teams);
 
-        for(int i = 0; i < schedule.getLengthOfSchedule(); i++){
-            Game game = schedule.getNextGame();
-            game.simGame();
-            game.getWinningTeam().updateWins();
-        }
+        Season season = new Season(schedule, standings);
+        season.simEntireSeason();
+
         standings.printDivisionalStandings();
     }
 }

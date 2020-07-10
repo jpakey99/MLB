@@ -6,7 +6,7 @@ public class AtBat {
 
     public AtBat(Player batter){
         this.batter = batter;
-        this.result = AtBatResult.NONE;
+        this.result = null;
     }
 
     public Player getBatter() {
@@ -21,23 +21,22 @@ public class AtBat {
         Random rand = new Random();
         float random = rand.nextFloat();
         if(random >= .3527){
-            result = AtBatResult.OUT;
+            result = new Out();
         }
         else if(random < .0513){
-            result = AtBatResult.DOUBLE;
+            result = new Double(batter);
         }
         else if(.0515 <= random && random < .0565){
-            result = AtBatResult.TRIPLE;
+            result = new Triple(batter);
         }
         else if(.0565 <= random && random < .0844){
-            result = AtBatResult.HOMERUN;
+            result = new HomeRun(batter);
         }
         else if(.0844 <= random && random < .1798){
-            result = AtBatResult.WALK;
+            result = new Walk(batter);
         }
         else{
-            result = AtBatResult.SINGLE;
+            result = new Single(batter);
         }
-
     }
 }
