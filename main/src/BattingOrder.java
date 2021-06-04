@@ -7,7 +7,7 @@ public class BattingOrder {
         this.battingOrder = battingOrder;
     }
 
-    public void incrementOrder(){
+    private void incrementOrder(){
         if(index > 7){
             this.index = 0;
         }

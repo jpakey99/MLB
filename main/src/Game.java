@@ -1,19 +1,26 @@
-public class Game {
+public class Game implements GameInterface{
     private Team homeTeam;
     private Team awayTeam;
     private boolean completed;
     private int homeScore;
     private int awayScore;
     private Team winningTeam;
+    private int gameId;
 
-    public Game(Team homeTeam, Team awayTeam){
+    public Game(Team homeTeam, Team awayTeam, int gameId){
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.completed = false;
         this.awayScore = 0;
         this.homeScore = 0;
         this.winningTeam = null;
+        this.gameId = gameId;
     }
+
+    public int getGameId() {
+        return gameId;
+    }
+
     public Team getHomeTeam() {
         return homeTeam;
     }
@@ -77,11 +84,11 @@ public class Game {
                 atBat.simAtBat();
                 AtBatResult result = atBat.getResult();
 
-                if(result == AtBatResult.OUT){
+                if(result instanceof Out){
                     outs++;
                 }
                 else{
-                    runs += basePaths.handleEvent(batter, result);
+                    runs += result.handleResult(basePaths);
                 }
             }
             if(topOfInning){
@@ -97,5 +104,15 @@ public class Game {
         }
         completed = true;
         setWinningTeam();
+    }
+
+    @Override
+    public String toString() {
+        if(this.completed){
+            return this.gameId + " " + awayTeam + ":" + awayScore + " @ " + homeTeam + ":" + homeScore;
+        }
+        else{
+            return this.gameId + " " + awayTeam + " @ " + homeTeam;
+        }
     }
 }
