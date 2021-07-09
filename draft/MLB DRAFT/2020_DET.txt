@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,1,1,Tigers,Y,$8416300,Spencer Torkelson (minors),3B,,,,,,,,,,,,,4Yr,Arizona State University (Tempe AZ)
+2020,2,,38,1,Tigers,Y,$1952300,Dillon Dingler (minors),C,,,,,,,,,,,,,4Yr,The Ohio State University (Columbus OH)
+2020,2,,62,25,Tigers,Y,$1210000,Daniel Cabrera (minors),OF,,,,,,,,,,,,,4Yr,Louisiana State University (Baton Rouge LA)
+2020,3,,73,1,Tigers,Y,$900000,Trei Cruz (minors),SS,,,,,,,,,,,,,4Yr,Rice University (Houston TX)
+2020,4,,102,1,Tigers,Y,$1000000,Gage Workman (minors),3B,,,,,,,,,,,,,4Yr,Arizona State University (Tempe AZ)
+2020,5,,132,1,Tigers,Y,$500000,Colt Keith (minors),3B,,,,,,,,,,,,,HS,Biloxi HS (Biloxi MS)

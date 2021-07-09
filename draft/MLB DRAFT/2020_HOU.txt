@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,2,,72,35,Astros,Y,$1250000,Alex Santos (minors),P,,,,,,,,,,,,,HS,Mount St. Michael HS (Bronx NY)
+2020,3,,101,29,Astros,Y,$577000,Tyler Brown (minors),P,,,,,,,,,,,,,4Yr,Vanderbilt University (Nashville TN)
+2020,4,,131,30,Astros,Y,$400000,Zach Daniels (minors),OF,,,,,,,,,,,,,4Yr,University of Tennessee (Knoxville TN)
+2020,5,,160,29,Astros,Y,$56000,Shay Whitcomb (minors),SS,,,,,,,,,,,,,4Yr,University of California San Diego (La Jolla CA)

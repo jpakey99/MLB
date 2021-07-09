@@ -1,0 +1,8 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,21,21,Cardinals,Y,$2900000,Jordan Walker (minors),3B,,,,,,,,,,,,,HS,Decatur HS (Decatur GA)
+2020,2,,54,17,Cardinals,Y,$2100000,Masyn Winn (minors),SS,,,,,,,,,,,,,HS,Kingwood HS (Kingwood TX)
+2020,2,,63,26,Cardinals,Y,$1115000,Tink Hence (minors),P,,,,,,,,,,,,,HS,Watson Chapel HS (Pine Bluff AR)
+2020,2,,70,33,Cardinals,Y,$700000,Alec Burleson (minors),OF,,,,,,,,,,,,,4Yr,East Carolina University (Greenville NC)
+2020,3,,93,21,Cardinals,Y,$575000,Levi Prater (minors),P,,,,,,,,,,,,,4Yr,University of Oklahoma (Norman OK)
+2020,4,,122,21,Cardinals,Y,$800000,Ian Bedell (minors),P,,,,,,,,,,,,,4Yr,University of Missouri (Columbia MO)
+2020,5,,152,21,Cardinals,Y,$100000,L.J. Jones (minors),OF,,,,,,,,,,,,,4Yr,California State University Long Beach (Long Beach CA)

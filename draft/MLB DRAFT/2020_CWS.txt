@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,11,11,White Sox,Y,$4547500,Garrett Crochet (minors)\crochga01,P,0.8,1,0,0,,,30,2,4,2.27,1.29,0,4Yr,University of Tennessee (Knoxville TN)
+2020,2,,47,10,White Sox,Y,$3000000,Jared Kelley (minors),P,,,,,,,,,,,,,HS,Refugio HS (Refugio TX)
+2020,3,,83,11,White Sox,Y,$50000,Adisyn Coffey (minors),P,,,,,,,,,,,,,JC,Wabash Valley College (Mount Carmel IL)
+2020,4,,112,11,White Sox,Y,$10000,Kade Mechals (minors),P,,,,,,,,,,,,,4Yr,Grand Canyon University (Phoenix AZ)
+2020,5,,142,11,White Sox,Y,$150000,Bailey Horn (minors),P,,,,,,,,,,,,,4Yr,Auburn University (Auburn AL)

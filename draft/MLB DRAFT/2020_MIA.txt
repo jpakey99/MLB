@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,3,3,Marlins,Y,$6700000,Max Meyer (minors),P,,,,,,,,,,,,,4Yr,University of Minnesota (Minneapolis MN)
+2020,2,,40,3,Marlins,Y,$2400000,Dax Fulton (minors),P,,,,,,,,,,,,,HS,Mustang HS (Mustang OK)
+2020,2,,61,24,Marlins,Y,$1129700,Kyle Nicolas (minors),P,,,,,,,,,,,,,4Yr,Ball State University (Muncie IN)
+2020,3,,75,3,Marlins,Y,$775000,Zach McCambley (minors),P,,,,,,,,,,,,,4Yr,Coastal Carolina University (Conway SC)
+2020,4,,104,3,Marlins,Y,$700000,Jake Eder (minors),P,,,,,,,,,,,,,4Yr,Vanderbilt University (Nashville TN)
+2020,5,,134,3,Marlins,Y,$300000,Kyle Hurt (minors),P,,,,,,,,,,,,,4Yr,University of Southern California (Los Angeles CA)

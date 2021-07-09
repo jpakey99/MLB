@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,26,26,Athletics,Y,$3300000,Tyler Soderstrom (minors),C,,,,,,,,,,,,,HS,Turlock HS (Turlock CA)
+2020,2,,58,21,Athletics,Y,$1000000,Jeff Criswell (minors),P,,,,,,,,,,,,,4Yr,University of Michigan (Ann Arbor MI)
+2020,3,,98,26,Athletics,Y,$300000,Michael Guldberg (minors),OF,,,,,,,,,,,,,4Yr,Georgia Institute of Technology (Atlanta GA)
+2020,4,,127,26,Athletics,Y,$447400,Dane Acker (minors),P,,,,,,,,,,,,,4Yr,University of Oklahoma (Norman OK)
+2020,5,,157,26,Athletics,Y,$400000,Stevie Emanuels (minors),P,,,,,,,,,,,,,4Yr,University of Washington (Seattle WA)

@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,9,9,Rockies,Y,$5000000,Zac Veen (minors),OF,,,,,,,,,,,,,HS,Spruce Creek HS (Port Orange FL)
+2020,1,,35,35,Rockies,Y,$2095800,Drew Romo (minors),C,,,,,,,,,,,,,HS,The Woodlands HS (The Woodlands TX)
+2020,2,,46,9,Rockies,Y,$1637400,Chris McMahon (minors),P,,,,,,,,,,,,,4Yr,University of Miami (Coral Gables FL)
+2020,3,,81,9,Rockies,Y,$755300,Sam Weatherly (minors),P,,,,,,,,,,,,,4Yr,Clemson University (Clemson SC)
+2020,4,,110,9,Rockies,Y,$450000,Case Williams (minors),P,,,,,,,,,,,,,HS,Douglas County HS (Castle Rock CO)
+2020,5,,140,9,Rockies,Y,$394300,Jack Blomgren (minors),SS,,,,,,,,,,,,,4Yr,University of Michigan (Ann Arbor MI)

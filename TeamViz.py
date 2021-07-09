@@ -1,4 +1,3 @@
-from labels import MLBLabel
 from PIL import Image, ImageDraw, ImageFont
 from team_batting_stats import TeamBattingStats
 from team_pitching_stats import TeamPitchingStats

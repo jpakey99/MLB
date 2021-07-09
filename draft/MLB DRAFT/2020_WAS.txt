@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,22,22,Nationals,Y,$3027000,Cade Cavalli (minors),P,,,,,,,,,,,,,4Yr,University of Oklahoma (Norman OK)
+2020,2,,55,18,Nationals,Y,$2000000,Cole Henry (minors),P,,,,,,,,,,,,,4Yr,Louisiana State University (Baton Rouge LA)
+2020,2,,71,34,Nationals,Y,$1000000,Sammy Infante (minors),SS,,,,,,,,,,,,,HS,Monsignor Edward Pace HS (Miami Gardens FL)
+2020,3,,94,22,Nationals,Y,$500000,Holden Powell (minors),P,,,,,,,,,,,,,4Yr,University of California Los Angeles (Los Angeles CA)
+2020,4,,123,22,Nationals,Y,$20000,Brady Lindsly (minors),C,,,,,,,,,,,,,4Yr,University of Oklahoma (Norman OK)
+2020,5,,153,22,Nationals,Y,$100000,Mitchell Parker (minors),P,,,,,,,,,,,,,JC,San Jacinto College North Campus (Houston TX)

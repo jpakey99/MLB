@@ -1,0 +1,9 @@
+Ideas:
+Use xRuns in the RunDiff Graph
+Add count to xRuns matrix
+Expand the sample size for xRuns
+Can xRuns be used to preidict who is going to win a ballgame?
+Game excitement index:
+    total change in wp / total number of plays
+    make graphic for each game
+Twitter post bot to post graphics?

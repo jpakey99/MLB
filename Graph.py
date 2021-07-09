@@ -12,7 +12,7 @@ pylab.rcParams.update(params)
 
 
 class Graph2DScatter:
-    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False):
+    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(23, 10.4), diag_lines=True):
         self.x = x
         self.y = y
         self.labels = labels
@@ -20,9 +20,11 @@ class Graph2DScatter:
         self.axis_labels = axis_labels
         self.inverty = inverty
         self.invertx = invertx
+        self.size = size
+        self.diag_lines = diag_lines
 
     def graph(self):
-        fig = plt.figure(figsize=(23, 10.4))
+        fig = plt.figure(figsize=self.size)
         ax = fig.add_subplot()
         # ax.scatter(self.x, self.y)
         for index in range(0,len(self.x)):
@@ -37,20 +39,21 @@ class Graph2DScatter:
             x_mean = [np.mean(self.x)] * len(self.x)
             ax.plot(self.x, y_mean, label='Mean', color='red')
             ax.plot(x_mean, self.y, label='Mean', color='red')
+        if self.diag_lines:
             x_sdev = stdev(self.x)
             y_sdev = stdev(self.y)
             y_list, x_list = [], []
             for value in range(min(self.y), max(self.y), int(y_sdev)):
                 y_list.append(value)
             y_list.append(y_list[-1] + y_sdev)
-            for value in range(min(self.x), max(self.x), int(x_sdev)):
+            for value in range(int(min(self.x)), int(max((self.x))), int(x_sdev)):
                 x_list.append(value)
             x_list.append(x_list[-1] + x_sdev)
             slope = (max(y_list) - min(y_list)) / (max(x_list) - min(x_list))
             std = -3
-            for i in range(0, len(y_list)):
+            for i in range(0, len(x_list)):
                 xl, yl, x, y = [], [], [], []
-                for j in range(0, len(x_list)):
+                for j in range(0, len(y_list)):
                     # shift lines
                     if min(self.x) - (x_sdev / 2) <= x_list[j] + (x_sdev * std) <= max(self.x) + (x_sdev / 2):
                         xl.append(x_list[j] + (x_sdev * std))
@@ -65,7 +68,7 @@ class Graph2DScatter:
 
 
 class BarGraph:
-    def __init__(self, x, y, title, labels=None, colors=None, credit=True, x_ticks=False):
+    def __init__(self, x, y, title, y_label='Run Diff', labels=None, colors=None, credit=True, x_ticks=False):
         self.x = x
         self.y = y
         self.title = title
@@ -73,6 +76,7 @@ class BarGraph:
         self.colors = colors
         self.credit = credit
         self.x_ticks = x_ticks
+        self.y_label = y_label
         params = {'xtick.labelsize': 'x-large',
                   'ytick.labelsize': 'x-large'}
         pylab.rcParams.update(params)
@@ -99,7 +103,7 @@ class BarGraph:
                     ly = 5
                 ab = AnnotationBbox(image, (self.x[index], ly), frameon=False)
                 ax.add_artist(ab)
-        plt.ylabel('Run Diff', fontsize=18)
+        plt.ylabel(self.y_label, fontsize=18)
         return plt
 
 

@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,6,6,Mariners,Y,$5700000,Emerson Hancock (minors),P,,,,,,,,,,,,,4Yr,University of Georgia (Athens GA)
+2020,2,,43,6,Mariners,Y,$1729800,Zach DeLoach (minors),OF,,,,,,,,,,,,,4Yr,Texas A&M University (College Station TX)
+2020,2,,64,27,Mariners,Y,$1050300,Connor Phillips (minors),P,,,,,,,,,,,,,JC,McLennan Community College (Waco TX)
+2020,3,,78,6,Mariners,Y,$575000,Kaden Polcovich (minors),2B,,,,,,,,,,,,,4Yr,Oklahoma State University (Stillwater OK)
+2020,4,,107,6,Mariners,Y,$500000,Tyler Keenan (minors),3B,,,,,,,,,,,,,4Yr,University of Mississippi (Oxford MS)
+2020,5,,137,6,Mariners,Y,$406000,Taylor Dollard (minors),P,,,,,,,,,,,,,4Yr,California Polytechnic State University San Luis Obispo (San Luis Obispo CA)

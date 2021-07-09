@@ -1,0 +1,8 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,13,13,Giants,Y,$3797500,Patrick Bailey (minors),C,,,,,,,,,,,,,4Yr,North Carolina State University (Raleigh NC)
+2020,2,,49,12,Giants,Y,$1147500,Casey Schmitt (minors),3B,,,,,,,,,,,,,4Yr,San Diego State University (San Diego CA)
+2020,2,,67,30,Giants,Y,$1197500,Nick Swiney (minors),P,,,,,,,,,,,,,4Yr,North Carolina State University (Raleigh NC)
+2020,2,,68,31,Giants,Y,$597500,Jimmy Glowenke (minors),SS,,,,,,,,,,,,,4Yr,Dallas Baptist University (Dallas TX)
+2020,3,,85,13,Giants,Y,$2497500,Kyle Harrison (minors),P,,,,,,,,,,,,,HS,De La Salle HS (Concord CA)
+2020,4,,114,13,Giants,Y,$197500,R.J. Dabovich (minors),P,,,,,,,,,,,,,4Yr,Arizona State University (Tempe AZ)
+2020,5,,144,13,Giants,Y,$22500,Ryan Murphy (minors),P,,,,,,,,,,,,,4Yr,Le Moyne College (Syracuse NY)

@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,7,7,Pirates,Y,$5432400,Nick Gonzales (minors),SS,,,,,,,,,,,,,4Yr,New Mexico State University (Las Cruces NM)
+2020,1,,31,31,Pirates,Y,$2050000,Carmen Mlodzinski (minors),P,,,,,,,,,,,,,4Yr,University of South Carolina (Columbia SC)
+2020,2,,44,7,Pirates,Y,$2200000,Jared Jones (minors),P,,,,,,,,,,,,,HS,La Mirada HS (La Mirada CA)
+2020,3,,79,7,Pirates,Y,$1200000,Nick Garcia (minors),P,,,,,,,,,,,,,4Yr,Chapman University (Orange CA)
+2020,4,,108,7,Pirates,Y,$60000,Jack Hartman (minors),P,,,,,,,,,,,,,4Yr,Appalachian State University (Boone NC)
+2020,5,,138,7,Pirates,Y,$125000,Logan Hofmann (minors),P,,,,,,,,,,,,,4Yr,Northwestern State University of Louisiana (Natchitoches LA)

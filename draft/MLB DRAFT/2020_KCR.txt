@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,4,4,Royals,Y,$6670000,Asa Lacy (minors),P,,,,,,,,,,,,,4Yr,Texas A&M University (College Station TX)
+2020,1,,32,32,Royals,Y,$3000000,Nick Loftin (minors),SS,,,,,,,,,,,,,4Yr,Baylor University (Waco TX)
+2020,2,,41,4,Royals,Y,$1450000,Ben Hernandez (minors),P,,,,,,,,,,,,,HS,De La Salle Insitute (Chicago IL)
+2020,3,,76,4,Royals,Y,$750000,Tyler Gentry (minors),OF,,,,,,,,,,,,,4Yr,University of Alabama (Tuscaloosa AL)
+2020,4,,105,4,Royals,Y,$450000,Christian Chamberlain (minors),P,,,,,,,,,,,,,4Yr,Oregon State University (Corvallis OR)
+2020,5,,135,4,Royals,Y,$200000,Will Klein (minors),P,,,,,,,,,,,,,4Yr,Eastern Illinois University (Charleston IL)

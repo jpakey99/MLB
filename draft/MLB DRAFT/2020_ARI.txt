@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,18,18,Diamondbacks,Y,$2650000,Bryce Jarvis (minors),P,,,,,,,,,,,,,4Yr,Duke University (Durham NC)
+2020,1,,33,33,Diamondbacks,Y,$2384900,Slade Cecconi (minors),P,,,,,,,,,,,,,4Yr,University of Miami (Coral Gables FL)
+2020,3,,90,18,Diamondbacks,Y,$800000,Liam Norris (minors),P,,,,,,,,,,,,,HS,Green Hope HS (Cary NC)
+2020,4,,119,18,Diamondbacks,Y,$1250000,A.J. Vukovich (minors),3B,,,,,,,,,,,,,HS,East Troy HS (East Troy WI)
+2020,5,,149,18,Diamondbacks,Y,$100000,Brandon Pfaadt (minors),P,,,,,,,,,,,,,4Yr,Bellarmine University (Louisville KY)

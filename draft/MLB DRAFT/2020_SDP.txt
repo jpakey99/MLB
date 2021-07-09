@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,8,8,Padres,Y,$4300000,Robert Hassell (minors),OF,,,,,,,,,,,,,HS,Independence HS (Thompson's Station TN)
+2020,1,,34,34,Padres,Y,$2000000,Justin Lange (minors),P,,,,,,,,,,,,,HS,Llano HS (Llano TX)
+2020,2,,45,8,Padres,Y,$1200004,Owen Caissie (minors),OF,,,,,,,,,,,,,HS,Notre Dame HS (Burlington ON)
+2020,3,,80,8,Padres,Y,$3300000,Cole Wilcox (minors),P,,,,,,,,,,,,,4Yr,University of Georgia (Athens GA)
+2020,4,,109,8,Padres,Y,$80000,Levi Thomas (minors),P,,,,,,,,,,,,,4Yr,Troy University (Troy AL)
+2020,5,,139,8,Padres,Y,$300000,Jagger Haynes (minors),P,,,,,,,,,,,,,HS,West Columbus HS (Cerro Gordo NC)

@@ -71,7 +71,4 @@ class TeamBattingStats(TeamStats):
 
 
 tb = TeamBattingStats(2021)
-x = tb.xruns()
-# print(x)
-for i in x:
-    print(i)
+print(tb.wrc_adjusted())

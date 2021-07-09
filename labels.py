@@ -36,6 +36,38 @@ class MLBLabel:
             'CHW': 'logos/whiteSox.png',
             'NYY': 'logos/yankees.png'
         }
+        self.id_logos = {
+            108 : 'logos/angels.png',
+            117 : 'logos/astros.png',
+            133 : 'logos/athletics.png',
+            141 : 'logos/blueJays.png',
+            144 : 'logos/braves.png',
+            158 : 'logos/brewers.png',
+            138 : 'logos/cardinals.png',
+            112 : 'logos/cubs.png',
+            109 : 'logos/diamondbacks.png',
+            119 : 'logos/dodgers.png',
+            137 : 'logos/giants.png',
+            114 : 'logos/indians.png',
+            136 : 'logos/mariners.png',
+            146 : 'logos/marlins.png',
+            121 : 'logos/mets.png',
+            120 : 'logos/nationals.png',
+            110 : 'logos/orioles.png',
+            135 : 'logos/padres.png',
+            143 : 'logos/phillies.png',
+            134 : 'logos/pirates.png',
+            140 : 'logos/rangers.png',
+            139 : 'logos/rays.png',
+            113 : 'logos/reds.png',
+            111 : 'logos/redSox.png',
+            115 : 'logos/rockies.png',
+            118 : 'logos/royals.png',
+            116 : 'logos/tigers.png',
+            142 : 'logos/twins.png',
+            145: 'logos/whiteSox.png',
+            147 : 'logos/yankees.png'
+        }
         self.colors = {
             'mlb': blue,
             'LAA': red,
@@ -74,6 +106,12 @@ class MLBLabel:
         labels = []
         for line in data:
             labels.append(self.logos[line])
+        return labels
+
+    def get_labels_by_id(self, data):
+        labels = []
+        for line in data:
+            labels.append(self.id_logos[line])
         return labels
 
     def get_colors(self, data):

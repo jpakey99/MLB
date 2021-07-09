@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,5,5,Blue Jays,Y,$7000825,Austin Martin (minors),SS,,,,,,,,,,,,,4Yr,Vanderbilt University (Nashville TN)
+2020,2,,42,5,Blue Jays,Y,$1797500,CJ Van Eyk (minors),P,,,,,,,,,,,,,4Yr,Florida State University (Tallahassee FL)
+2020,3,,77,5,Blue Jays,Y,$847500,Trent Palmer (minors),P,,,,,,,,,,,,,4Yr,Jacksonville University (Jacksonville FL)
+2020,4,,106,5,Blue Jays,Y,$459000,Nick Frasso (minors),P,,,,,,,,,,,,,4Yr,Loyola Marymount University (Los Angeles CA)
+2020,5,,136,5,Blue Jays,Y,$97500,Zach Britton (minors),OF,,,,,,,,,,,,,4Yr,University of Louisville (Louisville KY)

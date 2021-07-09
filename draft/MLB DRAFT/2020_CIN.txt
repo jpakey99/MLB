@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,12,12,Reds,Y,$4000000,Austin Hendrick (minors),OF,,,,,,,,,,,,,HS,West Allegheny HS (Imperial PA)
+2020,2,,48,11,Reds,Y,$1543600,Christian Roa (minors),P,,,,,,,,,,,,,4Yr,Texas A&M University (College Station TX)
+2020,2,,65,28,Reds,Y,$1290000,Jackson Miller (minors),C,,,,,,,,,,,,,HS,J W Mitchell HS (New Port Richey FL)
+2020,3,,84,12,Reds,Y,$700000,Bryce Bonnin (minors),P,,,,,,,,,,,,,4Yr,Texas Tech University (Lubbock TX)
+2020,4,,113,12,Reds,Y,$512400,Mac Wainwright (minors),OF,,,,,,,,,,,,,HS,St. Edward HS (Lakewood OH)
+2020,5,,143,12,Reds,Y,$500000,Joe Boyle (minors),P,,,,,,,,,,,,,4Yr,University of Notre Dame (South Bend IN)

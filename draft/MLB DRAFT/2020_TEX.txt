@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,14,14,Rangers,Y,$3250000,Justin Foscue (minors),2B,,,,,,,,,,,,,4Yr,Mississippi State University (Mississippi State MS)
+2020,2,,50,13,Rangers,Y,$1250000,Evan Carter (minors),OF,,,,,,,,,,,,,HS,Elizabethton HS (Elizabethton TN)
+2020,3,,86,14,Rangers,Y,$775000,Tekoah Roby (minors),P,,,,,,,,,,,,,HS,Pine Forest HS (Pensacola FL)
+2020,4,,115,14,Rangers,Y,$1200000,Dylan MacLean (minors),P,,,,,,,,,,,,,HS,Central Catholic HS (Portland OR)
+2020,5,,145,14,Rangers,Y,$800000,Thomas Saggese (minors),SS,,,,,,,,,,,,,HS,Carlsbad HS (Carlsbad CA)

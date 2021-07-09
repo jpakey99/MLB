@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,25,25,Braves,Y,$2197500,Jared Shuster (minors),P,,,,,,,,,,,,,4Yr,Wake Forest University (Winston-Salem NC)
+2020,3,,97,25,Braves,Y,$497500,Jesse Franklin (minors),OF,,,,,,,,,,,,,4Yr,University of Michigan (Ann Arbor MI)
+2020,4,,126,25,Braves,Y,$449300,Spencer Strider (minors),P,,,,,,,,,,,,,4Yr,Clemson University (Clemson SC)
+2020,5,,156,25,Braves,Y,$847500,Bryce Elder (minors),P,,,,,,,,,,,,,4Yr,University of Texas at Austin (Austin TX)

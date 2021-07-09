@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,19,19,Mets,Y,$3359000,Pete Crow-Armstrong (minors),OF,,,,,,,,,,,,,HS,Harvard-Westlake HS (Los Angeles CA)
+2020,2,,52,15,Mets,Y,$2900000,J.T. Ginn (minors),P,,,,,,,,,,,,,4Yr,Mississippi State University (Mississippi State MS)
+2020,2,,69,32,Mets,Y,$850000,Isaiah Greene (minors),OF,,,,,,,,,,,,,HS,Corona HS (Corona CA)
+2020,3,,91,19,Mets,Y,$20000,Anthony Walters (minors),SS,,,,,,,,,,,,,4Yr,San Diego State University (San Diego CA)
+2020,4,,120,19,Mets,Y,$350000,Matt Dyer (minors),C,,,,,,,,,,,,,4Yr,University of Arizona (Tucson AZ)
+2020,5,,150,19,Mets,Y,$20000,Eric Orze (minors),P,,,,,,,,,,,,,4Yr,University of New Orleans (New Orleans LA)

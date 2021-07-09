@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,20,20,Brewers,Y,$3242900,Garrett Mitchell (minors),OF,,,,,,,,,,,,,4Yr,University of California Los Angeles (Los Angeles CA)
+2020,2,,53,16,Brewers,Y,$1150000,Freddy Zamora (minors),SS,,,,,,,,,,,,,4Yr,University of Miami (Coral Gables FL)
+2020,3,,92,20,Brewers,Y,$575000,Zavier Warren (minors),C,,,,,,,,,,,,,4Yr,Central Michigan University (Mount Pleasant MI)
+2020,4,,121,20,Brewers,Y,$150000,Joey Wiemer (minors),OF,,,,,,,,,,,,,4Yr,University of Cincinnati (Cincinnati OH)
+2020,5,,151,20,Brewers,Y,$300000,Hayden Cantrelle (minors),SS,,,,,,,,,,,,,4Yr,University of Louisiana at Lafayette (Lafayette LA)

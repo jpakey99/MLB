@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,17,17,Red Sox,Y,$2700000,Nick Yorke (minors),2B,,,,,,,,,,,,,HS,Archbishop Mitty HS (San Jose CA)
+2020,3,,89,17,Red Sox,Y,$1750000,Blaze Jordan (minors),3B,,,,,,,,,,,,,HS,DeSoto Central HS (Southaven MS)
+2020,4,,118,17,Red Sox,Y,$200000,Jeremy Wu-Yelland (minors),P,,,,,,,,,,,,,4Yr,University of Hawaii at Manoa (Honolulu HI)
+2020,5,,148,17,Red Sox,Y,$600000,Shane Drohan (minors),P,,,,,,,,,,,,,4Yr,Florida State University (Tallahassee FL)

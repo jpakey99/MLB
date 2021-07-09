@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,10,10,Angels,Y,$4670000,Reid Detmers (minors),P,,,,,,,,,,,,,4Yr,University of Louisville (Louisville KY)
+2020,3,,82,10,Angels,Y,$744200,David Calabrese (minors),OF,,,,,,,,,,,,,HS,St. Elizabeth Catholic HS (Thornhill ON)
+2020,4,,111,10,Angels,Y,$900000,Werner Blakely (minors),SS,,,,,,,,,,,,,HS,Detroit Edison HS (Detroit MI)
+2020,5,,141,10,Angels,Y,$140000,Adam Seminaris (minors),P,,,,,,,,,,,,,4Yr,California State University Long Beach (Long Beach CA)

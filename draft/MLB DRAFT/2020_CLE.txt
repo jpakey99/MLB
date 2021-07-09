@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,23,23,Indians,Y,$2000000,Carson Tucker (minors),SS,,,,,,,,,,,,,HS,Mountain Pointe HS (Phoenix AZ)
+2020,1,,36,36,Indians,Y,$1600000,Tanner Burns (minors),P,,,,,,,,,,,,,4Yr,Auburn University (Auburn AL)
+2020,2,,56,19,Indians,Y,$1125000,Logan Allen (minors),P,,,,,,,,,,,,,4Yr,Florida International University (Miami FL)
+2020,3,,95,23,Indians,Y,$1525000,Petey Halpin (minors),OF,,,,,,,,,,,,,HS,St. Francis HS (Mountain View CA)
+2020,4,,124,23,Indians,Y,$800000,Milan Tolentino (minors),SS,,,,,,,,,,,,,HS,Santa Margarita Catholic HS (Rancho Santa Margarita CA)
+2020,5,,154,23,Indians,Y,$340000,Mason Hickman (minors),P,,,,,,,,,,,,,4Yr,Vanderbilt University (Nashville TN)

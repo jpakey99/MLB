@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,2,2,Orioles,Y,$5200000,Heston Kjerstad (minors),OF,,,,,,,,,,,,,4Yr,University of Arkansas (Fayetteville AR)
+2020,1,,30,30,Orioles,Y,$2365500,Jordan Westburg (minors),SS,,,,,,,,,,,,,4Yr,Mississippi State University (Mississippi State MS)
+2020,2,,39,2,Orioles,Y,$1906800,Hudson Haskin (minors),OF,,,,,,,,,,,,,4Yr,Tulane University (New Orleans LA)
+2020,3,,74,2,Orioles,Y,$950000,Anthony Servideo (minors),SS,,,,,,,,,,,,,4Yr,University of Mississippi (Oxford MS)
+2020,4,,103,2,Orioles,Y,$1750000,Coby Mayo (minors),3B,,,,,,,,,,,,,HS,Stoneman-Douglas HS (Parkland FL)
+2020,5,,133,2,Orioles,Y,$1500000,Carter Baumler (minors),P,,,,,,,,,,,,,HS,Dowling Catholic HS (West Des Moines IA)

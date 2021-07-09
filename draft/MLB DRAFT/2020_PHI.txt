@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,15,15,Phillies,Y,$4075000,Mick Abel (minors),P,,,,,,,,,,,,,HS,Jesuit HS (Beaverton OR)
+2020,3,,87,15,Phillies,Y,$1300000,Casey Martin (minors),SS,,,,,,,,,,,,,4Yr,University of Arkansas (Fayetteville AR)
+2020,4,,116,15,Phillies,Y,$225000,Carson Ragsdale (minors),P,,,,,,,,,,,,,4Yr,University of South Florida (Tampa FL)
+2020,5,,146,15,Phillies,Y,$100000,Baron Radcliff (minors),OF,,,,,,,,,,,,,4Yr,Georgia Institute of Technology (Atlanta GA)

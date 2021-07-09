@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,24,24,Rays,Y,$3000000,Nick Bitsko (minors),P,,,,,,,,,,,,,HS,Central Bucks HS East (Doylestown PA)
+2020,1,,37,37,Rays,Y,$1850000,Alika Williams (minors),SS,,,,,,,,,,,,,4Yr,Arizona State University (Tempe AZ)
+2020,2,,57,20,Rays,Y,$1243600,Ian Seymour (minors),P,,,,,,,,,,,,,4Yr,Virginia Polytechnic Institute and State University (Blacksburg VA)
+2020,3,,96,24,Rays,Y,$585000,Hunter Barnhart (minors),P,,,,,,,,,,,,,HS,St. Joseph HS (Santa Maria CA)
+2020,4,,125,24,Rays,Y,$455600,Tanner Murray (minors),SS,,,,,,,,,,,,,4Yr,University of California Davis (Davis CA)
+2020,5,,155,24,Rays,Y,$340000,Jeff Hakanson (minors),P,,,,,,,,,,,,,4Yr,University of Central Florida (Orlando FL)

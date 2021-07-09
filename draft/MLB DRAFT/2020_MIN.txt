@@ -1,0 +1,5 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,27,27,Twins,Y,$2750000,Aaron Sabato (minors),1B,,,,,,,,,,,,,4Yr,University of North Carolina at Chapel Hill (Chapel Hill NC)
+2020,2,,59,22,Twins,Y,$900000,Alerick Soularie (minors),OF,,,,,,,,,,,,,4Yr,University of Tennessee (Knoxville TN)
+2020,4,,128,27,Twins,Y,$410000,Marco Raya (minors),P,,,,,,,,,,,,,HS,United South HS (Laredo TX)
+2020,5,,158,27,Twins,Y,$270000,Kala'i Rosario (minors),OF,,,,,,,,,,,,,HS,Waiakea HS (Waiakea HI)

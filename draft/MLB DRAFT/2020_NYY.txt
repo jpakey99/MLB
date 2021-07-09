@@ -1,0 +1,4 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,28,28,Yankees,Y,$2500000,Austin Wells (minors),C,,,,,,,,,,,,,4Yr,University of Arizona (Tucson AZ)
+2020,3,,99,27,Yankees,Y,$587400,Trevor Hauver (minors),2B,,,,,,,,,,,,,4Yr,Arizona State University (Tempe AZ)
+2020,4,,129,28,Yankees,Y,$600000,Beck Way (minors),P,,,,,,,,,,,,,JC,Northwest Florida State College (Niceville FL)

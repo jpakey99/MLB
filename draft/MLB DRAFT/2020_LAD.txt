@@ -1,0 +1,7 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,29,29,Dodgers,Y,$2197500,Bobby Miller (minors),P,,,,,,,,,,,,,4Yr,University of Louisville (Louisville KY)
+2020,2,,60,23,Dodgers,Y,$712500,Landon Knack (minors),P,,,,,,,,,,,,,4Yr,East Tennessee State University (Johnson City TN)
+2020,2,,66,29,Dodgers,Y,$1196500,Clayton Beeter (minors),P,,,,,,,,,,,,,4Yr,Texas Tech University (Lubbock TX)
+2020,3,,100,28,Dodgers,Y,$1622500,Jake Vogel (minors),OF,,,,,,,,,,,,,HS,Huntington Beach HS (Huntington Beach CA)
+2020,4,,130,29,Dodgers,Y,$397500,Carson Taylor (minors),C,,,,,,,,,,,,,4Yr,Virginia Polytechnic Institute and State University (Blacksburg VA)
+2020,5,,159,28,Dodgers,Y,$97500,Gavin Stone (minors),P,,,,,,,,,,,,,4Yr,University of Central Arkansas (Conway AR)

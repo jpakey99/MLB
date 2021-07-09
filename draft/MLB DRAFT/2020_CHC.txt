@@ -1,0 +1,6 @@
+Year,Rnd,DT,OvPck,RdPck,Tm,Signed,Bonus,Name,Pos,WAR,G,AB,HR,BA,OPS,G,W,L,ERA,WHIP,SV,Type,Drafted Out of
+2020,1,,16,16,Cubs,Y,$3745500,Ed Howard (minors),SS,,,,,,,,,,,,,HS,Mount Carmel HS (Chicago IL)
+2020,2,,51,14,Cubs,Y,$1050000,Burl Carraway (minors),P,,,,,,,,,,,,,4Yr,Dallas Baptist University (Dallas TX)
+2020,3,,88,16,Cubs,Y,$678600,Jordan Nwogu (minors),OF,,,,,,,,,,,,,4Yr,University of Michigan (Ann Arbor MI)
+2020,4,,117,16,Cubs,Y,$492700,Luke Little (minors),P,,,,,,,,,,,,,JC,San Jacinto College North Campus (Houston TX)
+2020,5,,147,16,Cubs,Y,$900000,Koen Moreno (minors),P,,,,,,,,,,,,,HS,Panther Creek HS (Cary NC)
