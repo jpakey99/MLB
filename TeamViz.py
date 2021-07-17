@@ -133,6 +133,40 @@ class TeamLuckGraph(TeamScatterGraph):
         self.image.save('graphs//' + 'Team_luck' + '_' + self.date + '.png')
 
 
+class Team2DRunDiff(TeamScatterGraph):
+    def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str):
+        super().__init__(team_stats, date)
+        self.subtitle = 'Updated: ' + date
+        self.title = 'Pitching vs Batting'
+        self.credits = 'Twitter: @jpakey99, Idea: @CChartingHockey, data: Fangraphs'
+        self.corner_labels, self.axis_labels = ('good', 'dull', 'fun', 'bad'), ('Runs For', 'Runs Against')
+        self.runs_for = self.batting_stats.runs()
+        self.runs_against = self.pitching_stats.runs()
+        combined, x, y, labels = self.combine_lists(self.runs_for, self.runs_against)
+        self.logos = self.labels.get_labels(labels)
+        self.graph = Graph2DScatter(x, y, self.logos, self.axis_labels, inverty=True)
+
+    def create_image(self):
+        x, y = 20, 150
+        tw, th = self.draw.textsize(self.title, font=self.title_font)
+        sw, th = self.draw.textsize(self.subtitle, font=self.sub_title_font)
+        cw, th = self.draw.textsize(self.credits, font=self.sub_title_font)
+        self.draw.text(((WIDTH - tw) / 2, 10), text=self.title, fill=(0, 0, 0, 255), font=self.title_font)
+        self.draw.text(((WIDTH - sw) / 2, 70), text=self.subtitle, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text(((WIDTH - cw) / 2, 100), text=self.credits, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.graph.graph().savefig('1', bbox_inches='tight')
+        g :Image.Image= Image.open('1.png')
+        gx, gy = g.size
+        self.image.paste(g, box=(x, y))
+        self.draw.text((x+100, y+20), text='dull', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((x + 100, gy+30), text='bad', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((gx-70, y + 20), text='good', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((gx-70, gy + 30), text='fun', fill=(0, 0, 0, 255), font=self.sub_title_font)
+
+    def save_image(self):
+        self.image.save('graphs//' + '2D_RunDif' + '_' + self.date + '.png')
+
+
 class TeamBarGraph(TeamStatViz):
     def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str):
         super().__init__(team_stats, date)

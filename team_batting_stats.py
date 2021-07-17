@@ -1,4 +1,6 @@
 import pybaseball
+
+import team_stats
 from team_stats import TeamStats
 
 
@@ -70,5 +72,17 @@ class TeamBattingStats(TeamStats):
         return self.get_data('RE24')
 
 
-tb = TeamBattingStats(2021)
-print(tb.wrc_adjusted())
+def organize_data(team, stat):
+    team_list, data_list, combined_list = [], [], []
+    for t in team:
+        team_list.append(t)
+    for w in stat:
+        data_list.append(w)
+    for i in range(0, len(team_list)):
+        combined_list.append((team_list[i], data_list[i]))
+    return combined_list
+
+# tb = TeamBattingStats(2021)
+# print(tb.data)
+ts = team_stats.TeamStandings(2021)
+print(ts.get_standings())

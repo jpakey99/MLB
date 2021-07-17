@@ -3,12 +3,16 @@ import mysql.connector
 '''
 Team: teamID: int, city_name: str, nickname: str
 DraftPick: pickID, round, year, pick_num_round, pick_overall, selection_team, player_first_name, player_last_name, WAR, position, games_played, bonus, type
+DraftPool: selection_team, pool, picks
 '''
+
+user_input = input("Please enter database password")
 
 # connecting to a database
 db = mysql.connector.connect(
     host="localhost",
     user="jpakey99",
+    passwd=user_input,
     database="Baseball" # only include if you want to connect to specific database, must all ready be created
 )
 
@@ -17,12 +21,41 @@ mycurser = db.cursor(buffered=True)
 
 # creating a table
 # datetime: date, ENUM(VALUES): values, NOT NULL: makes sure values are filled
-# mycurser.execute("CREATE TABLE DraftPick (pickID INT PRIMARY KEY AUTO_INCREMENT, round INT, year INT,"
-#                  "pick_num_round INT, pick_overall INT, selection_team INT, player_first_name VARCHAR(50), player_last_name VARCHAR(50), position VARCHAR(50), WAR FLOAT, games_played INT, bonus INT, type VARCHAR(50),"
+# mycurser.execute("CREATE TABLE DraftPool (selection_team INT, pool INTEGER, picks INTEGER,"
 #                  "FOREIGN KEY (selection_team) REFERENCES Team(teamID))")
 # mycurser.execute("DESCRIBE DraftPick")
 # for x in mycurser:
 #     print(x)
+
+
+def add_pool(team, pool, picks, year):
+    mycurser.execute("INSERT INTO DraftPool (selection_team, pool, picks, year)"
+                     " VALUES (%s, %s, %s, %s)", (team, pool, picks, year))
+    db.commit()
+
+
+def get_player_drafted_year(year):
+    sql = "SELECT player_first_name, player_last_name, selection_team FROM DraftPick WHERE year = %s"
+    mycurser.execute(sql, (year,))
+    picks = []
+    for x in mycurser:
+        picks.append((x[0], x[1], x[2]))
+    return picks
+
+
+def get_pool_per_pick(team, year):
+    sql = "SELECT pool, picks FROM DraftPool WHERE selection_team = %s AND year = %s"
+    mycurser.execute(sql, (team, year))
+    for x in mycurser:
+        string = str(x[0]/x[1])
+        k = string.split('.')
+        keep_index = len(k[0]) - 4
+        temp_string = k[0]
+        dec = keep_index - 1
+        temp = temp_string[0:keep_index]
+        final = temp[0:dec] + '.' + temp[dec:]
+        print(final, x[0]/x[1])
+        return float(final)
 
 
 def add_draft_pick(round, year, pick_num_round, pick_overall, selection_team, player_first_name, player_last_name, WAR, games_played, bonus, type, position):
@@ -37,7 +70,7 @@ def get_teamID_from_nickname(nickname):
     mycurser.execute("SELECT teamID FROM Team WHERE nickname = %s", (nickname,))
     for x in mycurser:
         y = x[0]
-        return y
+        return int(y)
 
 
 def get_draft_pick_war_per_team_year_year(teamId, year):
@@ -66,6 +99,14 @@ def get_war_per_162_for_pick(pick):
 
 
 # print(get_war_per_162_for_pick(20))
+# sql = "SELECT games_played FROM DraftPick WHERE selection_team = %s"
+# value = (109,)
+# mycurser.execute(sql, value)
+# players = 0
+# for x in mycurser:
+#     print(x)
+#     if x[0] >= 1:
+#         players += 1
 
 
 def get_total_mlb_players_from_team_draft_year(teamId, year):
@@ -80,7 +121,7 @@ def get_total_mlb_players_from_team_draft_year(teamId, year):
 
 
 def retrieve_teamids():
-    mycurser.execute("SELECT teamID FROM Team")
+    mycurser.execute("SELECT teamID, nickname FROM Team")
     ids = []
     for x in mycurser:
         id = int(x[0])
@@ -93,19 +134,11 @@ def add_team(id, name, nickname):
     db.commit()
 
 
-# add_basepaths('0')
-# print(get_xr_basepath('0'))
-# update_basepath_runs('0', 2)
-
-# add elements
-# mycurser.execute("INSERT INTO Person (name, age) VALUES (%s, %s)", ("Tim", 19))
-# db.commit()
-
-# add_team(1, 'test', 'hey')
-
 # retrieve items
 # * = all items, SELECT * FROM ____ WHERE: selects values, ORDER BY
-# mycurser.execute("SELECT * FROM DraftPick")
+# mycurser.execute("UPDATE Team SET nickname='Diamondbacks' WHERE teamID = 109")
+# mycurser.execute("SELECT * FROM DraftPool")
+# db.commit()
 # for x in mycurser:
 #     print(x)
 
@@ -114,9 +147,9 @@ def add_team(id, name, nickname):
 # mycurser.execute("ALTER TABLE Team CHANGE teamID INT PRIMARY KEY")
 # db.commit()
 
-# mycurser.execute("DELETE FROM Team where teamID = 1")
+# mycurser.execute("DELETE FROM DraftPool")
+# mycurser.execute("ALTER TABLE DraftPool ADD year INT")
 # db.commit()
-# mycurser.execute("ALTER/ TABLE Games ADD year INT")
 # mycurser.execute("ALTER/ TABLE Games ADD year INT")
 # mycurser.execute("ALTER TABLE Games ADD month INT")
 # mycurser.execute("ALTER TABLE Games ADD day INT")

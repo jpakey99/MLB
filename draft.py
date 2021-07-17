@@ -10,11 +10,30 @@ import statsapi, pybaseball
 WIDTH, HEIGHT = 1920,1028
 
 
+def read_pool_files():
+    for file_name in os.listdir("draft/Bonus Pools"):
+        if file_name.endswith('.tsv'):
+            year = file_name.split('- ')[1].split('.')[0]
+            print(year)
+            file = open("draft/Bonus Pools/" + file_name)
+            file.readline()
+            for line in file:
+                team_pool = line.split('\t')
+                tm = draft_database.get_teamID_from_nickname(team_pool[0])
+                s = team_pool[1].split(',')
+                pool_s = ''
+                for c in s:
+                    pool_s += c
+                pool = int(pool_s)
+                picks = int(team_pool[2])
+                draft_database.add_pool(tm, pool, picks, year)
+
+
 def read_all_files():
     for file_name in os.listdir("draft/MLB DRAFT"):
         if file_name.endswith('.txt'):
             print(file_name)
-            file = open("MLB DRAFT/" + file_name)
+            file = open("draft/MLB DRAFT/" + file_name)
             file.readline()
 
             for line in file:
@@ -27,6 +46,7 @@ def read_all_files():
                         d_round = int(selection[1].strip('s'))
                         o_pick = int(selection[3])
                         r_pick = int(selection[4])
+                        print(selection[5])
                         tm = draft_database.get_teamID_from_nickname(selection[5])
                         if selection[7] != '':
                             bonus = int(selection[7].strip('$'))
@@ -57,7 +77,8 @@ def read_all_files():
                             l_name += n
                         l_name.strip(' ')
                         # print(d_round, year, o_pick, r_pick, tm, f_name, l_name, war, games, bonus, type, pos)
-                        draft_database.add_draft_pick(d_round, year, r_pick, o_pick, tm, f_name, l_name, war, games, bonus, ty, pos)
+                        draft_database.add_draft_pick(round=d_round, year=year, pick_num_round=r_pick, pick_overall=o_pick, selection_team=tm, player_first_name=f_name, player_last_name=l_name, WAR=war, games_played=games, bonus=bonus, type=ty, position=pos)
+                        # draft_database.add_draft_pick(d_round, year, r_pick, o_pick, tm, f_name, l_name, war, games, bonus, ty, pos)
 
 
 def combine_lists(list1, list2):
@@ -130,6 +151,52 @@ class PlayersVsProduction:
         self.image.save('draft//' + 'draft' + 'games_vs_production_' + str(self.year) + '.png')
 
 
+class PoolVsProduction:
+    def __init__(self, year):
+        self.image = Image.new('RGBA', (WIDTH, HEIGHT))
+        self.draw = ImageDraw.ImageDraw(self.image)
+        self.draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(255, 255, 255, 255))
+        self.title_font = ImageFont.truetype('Roboto-Regular.ttf', 100)
+        self.sub_title_font = ImageFont.truetype('Roboto-Regular.ttf', 30)
+        self.title = str(year) + ' Draft'
+        self.sub_title = 'Bonus Pool per Draft Pick vs Production'
+        self.credits = 'Twitter: @jpakey99, data: baseball_reference'
+        self.year = year
+        teams = draft_database.retrieve_teamids()
+        self.war, self.games = [], []
+        for team in teams:
+            self.war.append((team, draft_database.get_draft_pick_war_per_team_year_year(team, year)))
+            self.games.append((team, draft_database.get_pool_per_pick(team, year)))
+        print(self.war, self.games)
+        combined, x, y, labels = combine_lists(self.war, self.games)
+        mlb_labels = MLBLabel()
+        l = mlb_labels.get_labels_by_id(labels)
+        # print(x, y, labels)
+        self.graph = Graph2DScatter(x, y, l, ('WAR/162', 'Bonus Pool per Pick ($100,000'), True, False, False, size=(12, 12), diag_lines=False)
+
+    def create_image(self):
+        x, y = 800, 20
+        tw,th = self.draw.textsize(self.title, font=self.title_font)
+        sw, sh = self.draw.textsize(self.sub_title, font=self.sub_title_font)
+        cw, ch = self.draw.textsize(self.credits, font=self.sub_title_font)
+        text_box = WIDTH -800
+        self.draw.text((((text_box-tw)/4), (HEIGHT/2)-th), text=self.title, fill=(0, 0, 0, 255), font=self.title_font)
+        self.draw.text((((text_box - sw) / 5), (HEIGHT / 2) +sh), text=self.sub_title, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((((text_box-cw)/5), (HEIGHT/2)+(2*ch)), text=self.credits, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.graph.graph().savefig('1', bbox_inches='tight')
+        g: Image.Image = Image.open('1.png')
+        gx, gy = g.size
+        print(x+100, y+gy)
+        self.image.paste(g, box=(x, y))
+        self.draw.text((x+100, y + 20), text='spent lots\nlittle production', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((x+100, gy-130), text='spent little\nlittle production', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((x+gx-160, y + 20), text='fair value', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text((x+gx-160, gy-100), text='great value', fill=(0, 0, 0, 255), font=self.sub_title_font)
+
+    def save_image(self):
+        self.image.save('draft//' + 'draft' + 'pool_vs_production' + str(self.year) + '.png')
+
+
 class War_per_162_per_pick:
     def __init__(self):
         self.image = Image.new('RGBA', (WIDTH, HEIGHT))
@@ -179,8 +246,9 @@ class War_per_162_per_pick:
 
 
 def main():
-    # run_war_vs_players_graph()
-    graph = PlayersVsProduction(2015)
+    # read_pool_files()
+    # read_all_files()
+    graph = PoolVsProduction(2016)
     graph.create_image()
     graph.save_image()
 

@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pylab
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
@@ -43,23 +44,20 @@ class Graph2DScatter:
             x_sdev = stdev(self.x)
             y_sdev = stdev(self.y)
             y_list, x_list = [], []
-            for value in range(min(self.y), max(self.y), int(y_sdev)):
-                y_list.append(value)
-            y_list.append(y_list[-1] + y_sdev)
-            for value in range(int(min(self.x)), int(max((self.x))), int(x_sdev)):
-                x_list.append(value)
+            ymid = (ax.get_ylim()[0] + ax.get_ylim()[1])/2
+            xmid = (ax.get_xlim()[0] + ax.get_xlim()[1]) / 2
+            ysteps = (ax.get_ylim()[1] - ax.get_ylim()[0])//(y_sdev/2)
+            xsteps = (ax.get_xlim()[1] - ax.get_xlim()[0]) // (x_sdev)
+            print(int(0-(ysteps/2)), int(0+(ysteps/2)))
+            for i in range(int(0-(ysteps/2)), int(0+(ysteps/2))):
+                y_list.append(ymid + (i*y_sdev))
+            for i in range(int(0-(xsteps/2)), int(0+(xsteps/2))):
+                x_list.append(xmid + (i * x_sdev))
             x_list.append(x_list[-1] + x_sdev)
-            slope = (max(y_list) - min(y_list)) / (max(x_list) - min(x_list))
-            std = -3
-            for i in range(0, len(x_list)):
-                xl, yl, x, y = [], [], [], []
-                for j in range(0, len(y_list)):
-                    # shift lines
-                    if min(self.x) - (x_sdev / 2) <= x_list[j] + (x_sdev * std) <= max(self.x) + (x_sdev / 2):
-                        xl.append(x_list[j] + (x_sdev * std))
-                        yl.append(y_list[j])
-                std += 1
-                ax.plot(xl, yl, label='Mean', color='gray')
+            slope = (y_list[0] - y_list[-1]) / (min(x_list) - max(x_list))
+            for pointx in x_list:
+                # plt.scatter(x=pointx, y=ymid, color='blue')
+                plt.axline((pointx, ymid), slope=slope, color='gray')
         if self.inverty:
             plt.gca().invert_yaxis()
         if self.invertx:

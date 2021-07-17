@@ -62,7 +62,7 @@ def run_all_graphs(year):
     # toc.display_image()
     toc.save_image()
 
-    tluck = TeamLuckGraph([tbs, tps], string_time)
+    tluck = Team2DRunDiff([tbs, tps], string_time)
     tluck.create_image()
     # tluck.display_image()
     tluck.save_image()

@@ -7,10 +7,13 @@ Games: gameID: int, away_team: teamID, home_team: teamID, away_score: int, home_
 DraftPick: pickID, Round, Year, pick_num_round, pick_overall, selection_team, player_first_name, player_last_name, WAR, position, games_played, bonus, type
 '''
 
+user_input = input("Please enter database password")
+
 # connecting to a database
 db = mysql.connector.connect(
     host="localhost",
     user="jpakey99",
+    passwd=user_input,
     database="Baseball" # only include if you want to connect to specific database, must all ready be created
 )
 
