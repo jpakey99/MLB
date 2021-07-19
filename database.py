@@ -1,7 +1,8 @@
 import mysql.connector
+from labels import MLBLabel
 
 '''
-Team: teamID: int, city_name: str, nickname: str
+Team: teamID: int, city_name: str, nickname: str, abbr: str
 Basepaths: basepaths_id: str, zero_runs: int, one_runs: int, two_runs: int, three_runs: int, four_runs: int
 Games: gameID: int, away_team: teamID, home_team: teamID, away_score: int, home_score: int, away_xR: float, home_xR: float, winner: teamID
 DraftPick: pickID, Round, Year, pick_num_round, pick_overall, selection_team, player_first_name, player_last_name, WAR, position, games_played, bonus, type
@@ -138,6 +139,15 @@ def update_basepath_runs(id, runs):
     db.commit()
 
 
+def get_name_from_abbr(abbr):
+    sql = "SELECT city_name, nickname FROM Team WHERE abbr = %s"
+    mycurser.execute(sql, (abbr,))
+    team_list = []
+    for x in mycurser:
+        team_list.append(x[0] + ' ' + x[1])
+    return team_list
+
+
 def get_expected_runs_for_team(id):
     pass
 
@@ -154,8 +164,27 @@ def get_xR_all_teams():
 # print(get_xr_basepath('0'))
 # update_basepath_runs('0', 2)
 
+# team_list = []
+# mycurser.execute("SELECT * FROM Team")
+# for x in mycurser:
+#     print(x)
+#     team_list.append(x[2])
+# abbr = MLBLabel().abbr
+# for team in abbr:
+#     team_split = abbr[team].split(' ')
+#     if team_split[-1] == 'Sox' or team_split[-1] == 'Jays':
+#         t = team_split[-2] + ' ' + team_split[-1]
+#     else:
+#         t = team_split[-1]
+#     for name in team_list:
+#         if t == name:
+#             found=True
+#             print(t, name, team)
+#             mycurser.execute("UPDATE Team SET abbr = %s WHERE nickname = %s", (team, name))
+
 # add elements
-# mycurser.execute("INSERT INTO Person (name, age) VALUES (%s, %s)", ("Tim", 19))
+# ad = (())
+# mycurser.execute("INSERT INTO Team (abbr) VALUES (%s)", (19))
 # db.commit()
 
 # add_team(1, 'test', 'hey')
@@ -172,11 +201,11 @@ def get_xR_all_teams():
 # db.commit()
 
 # mycurser.execute("DELETE FROM Games")
-# db.commit()
-# mycurser.execute("ALTER/ TABLE Games ADD year INT")
+# mycurser.execute("ALTER TABLE Team ADD abbr VARCHAR(50)")
 # mycurser.execute("ALTER/ TABLE Games ADD year INT")
 # mycurser.execute("ALTER TABLE Games ADD month INT")
 # mycurser.execute("ALTER TABLE Games ADD day INT")
+# db.commit()
 
 # mycurser.execute("DESCRIBE Games")
 # for x in mycurser:

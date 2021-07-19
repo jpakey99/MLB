@@ -2,6 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 from team_batting_stats import TeamBattingStats
 from team_pitching_stats import TeamPitchingStats
 from labels import MLBLabel
+from team_stats import *
+import database
 from statistics import stdev
 from Graph import *
 
@@ -167,6 +169,68 @@ class Team2DRunDiff(TeamScatterGraph):
         self.image.save('graphs//' + '2D_RunDif' + '_' + self.date + '.png')
 
 
+class TeamRecordVsRunDif(TeamScatterGraph):
+    def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str):
+        super().__init__(team_stats, date)
+        self.subtitle = 'Updated: ' + date
+        self.title = 'Win % vs Run Differential'
+        self.credits = 'Twitter: @jpakey99, data: Fangraphs'
+        self.corner_labels, self.axis_labels = ('good', 'dull', 'fun', 'bad'), ('Hitter BAPIP+', 'Pitcher BAPIP+')
+        self.runs_for, self.runs_against = self.batting_stats.runs(), self.pitching_stats.runs()
+        self.dif = self.get_run_diff() # get z-score for run dif
+        self.wper = TeamStandings(2021).get_standings()
+        combined, x, y, logos = self.combine_lists(self.dif, self.wper)
+        x_axis = []
+        print(x_axis)
+        print(y)
+        self.graph = Graph2DScatter(x, y, logos, self.axis_labels, inverty=False, diag_lines=False, average_lines=True)
+
+    def combine_lists(self, list1, list2):
+        combined, x, y, labels = [], [], [], []
+        for diff_team, diff in list1:
+            tm = database.get_name_from_abbr(diff_team)[0]
+            if tm.split(' ')[-1] == 'Sox' or tm.split(' ')[-1] == 'Jays':
+                s_team = tm.split(' ')[-2] + ' ' + tm.split(' ')[-1]
+            else:
+                s_team = tm.split(' ')[-1]
+            for wp_team, wp in list2:
+                if s_team in wp_team:
+                    combined.append((diff, wp))
+                    x.append(diff)
+                    y.append(float(wp))
+                    labels.append(diff_team)
+        return combined, x, y, self.labels.get_labels(labels)
+
+    def get_run_diff(self):
+        diff, teams = [], []
+        for bteam in self.runs_for:
+            for pteam in self.runs_against:
+                if bteam[0] == pteam[0]:
+                    diff.append((bteam[0], bteam[1]-pteam[1]))
+        return diff
+
+
+    def create_image(self):
+        x, y = 20, 150
+        tw, th = self.draw.textsize(self.title, font=self.title_font)
+        sw, th = self.draw.textsize(self.subtitle, font=self.sub_title_font)
+        cw, th = self.draw.textsize(self.credits, font=self.sub_title_font)
+        self.draw.text(((WIDTH - tw) / 2, 10), text=self.title, fill=(0, 0, 0, 255), font=self.title_font)
+        self.draw.text(((WIDTH - sw) / 2, 70), text=self.subtitle, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.draw.text(((WIDTH - cw) / 2, 100), text=self.credits, fill=(0, 0, 0, 255), font=self.sub_title_font)
+        self.graph.graph().savefig('1', bbox_inches='tight')
+        g :Image.Image= Image.open('1.png')
+        gx, gy = g.size
+        self.image.paste(g, box=(x, y))
+        # self.draw.text((x+100, y+20), text='dull', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        # self.draw.text((x + 100, gy+30), text='bad', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        # self.draw.text((gx-70, y + 20), text='good', fill=(0, 0, 0, 255), font=self.sub_title_font)
+        # self.draw.text((gx-70, gy + 30), text='fun', fill=(0, 0, 0, 255), font=self.sub_title_font)
+
+    def save_image(self):
+        self.image.save('graphs//' + 'W%vRunDiff' + '_' + self.date + '.png')
+
+
 class TeamBarGraph(TeamStatViz):
     def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str):
         super().__init__(team_stats, date)
@@ -174,25 +238,40 @@ class TeamBarGraph(TeamStatViz):
 
 
 class RunDiff(TeamBarGraph):
+    '''
+    get actual run differential
+    get RE24 run differential
+    add the team with each
+    create a list that is (team, rdiff, xrdiff)
+    get color shade based on xrdiff
+    '''
     def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str):
         super().__init__(team_stats, date)
         self.subtitle = 'Updated: ' + date
         self.title = 'Team Run Differential'
         self.credits = 'Twitter: @jpakey99, Idea: @ChartingHockey, data: Fangraphs'
-        self.scored = self.batting_stats.runs()
-        self.given_up = self.pitching_stats.runs()
+        self.scored, xrf = self.batting_stats.runs(), self.batting_stats.xruns()
+        self.given_up, xra = self.pitching_stats.runs(), self.pitching_stats.xruns()
         combined, self.ra, self.rf, self.t_a = self.combine_lists(self.given_up, self.scored)
-        self.diff = self.get_graph_values()
+        # print(self.t_a)
+        # print()
+        self.dif = self.get_graph_values()
+        xc, self.xrf, self.xra, l = self.combine_lists(xrf, xra)
+        self.xdif = self.get_xdiff()
+        cc, self.diff, self.xdiff, teams = self.combine_lists(self.dif, self.xdif)
+        print(self.xdiff)
+        print(self.diff)
         self.combined = self.color_shade()
+        # print(self.combined)
         teams, y, colors = self.sort()
         self.logos = self.labels.get_labels(teams)
-        print(teams)
+        # print(teams)
         self.graph = BarGraph(teams, y, 'Run Differential', labels=self.logos, colors=colors)
 
     def color_shade(self):
         combined = []
-        m = max(max(self.diff), abs(min(self.diff)))
-        for i in range(0,len(self.diff)):
+        m = max(max(self.xdiff), abs(min(self.xdiff)))
+        for i in range(0,len(self.xdiff)):
             d = self.diff[i]
             r, g, b = 0, 0, 0
             if d < 0:
@@ -204,10 +283,19 @@ class RunDiff(TeamBarGraph):
             combined.append((self.t_a[i], d, (r,g,b)))
         return combined
 
+    def get_xdiff(self):
+        diff = []
+        print('xrf', len(self.xrf))
+        for i in range(0, len(self.xrf)):
+            # print(list1[i], list2[i])
+            diff.append((self.t_a, self.xrf[i] + self.xra[i]))
+        return diff
+
     def get_graph_values(self):
         diff= []
+        # print('fe', self.t_a)
         for i in range(0,len(self.rf)):
-            diff.append(self.rf[i] - self.ra[i])
+            diff.append((self.t_a, self.rf[i] - self.ra[i]))
         return diff
 
     def sort(self):
@@ -215,6 +303,7 @@ class RunDiff(TeamBarGraph):
             for j in range(0, len(self.combined) - 1):
                 if self.combined[j][1] < self.combined[j + 1][1]:
                     temp = self.combined[j]
+                    # print(temp)
                     self.combined[j] = self.combined[j + 1]
                     self.combined[j + 1] = temp
 
@@ -306,3 +395,8 @@ def img_creator(image):
     return image
 
 
+if __name__ == '__main__':
+    # RunDiff([TeamBattingStats(2021), TeamPitchingStats(2021)], '2190')
+    g = RunDiff([TeamBattingStats(2021), TeamPitchingStats(2021)], '2190')
+    g.create_image()
+    g.save_image()

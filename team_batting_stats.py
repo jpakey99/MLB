@@ -82,7 +82,9 @@ def organize_data(team, stat):
         combined_list.append((team_list[i], data_list[i]))
     return combined_list
 
-# tb = TeamBattingStats(2021)
-# print(tb.data)
-ts = team_stats.TeamStandings(2021)
-print(ts.get_standings())
+
+if __name__ == '__main__':
+    # tb = TeamBattingStats(2021)
+    # print(tb.data)
+    ts = team_stats.TeamStandings(2021)
+    print(ts.get_standings())

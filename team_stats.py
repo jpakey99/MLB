@@ -17,7 +17,7 @@ class TeamStats:
         self.data = data
 
     def get_data(self, key):
-        team = self.data['Tm']
+        team = self.data['Team']
         stat = self.data[key]
         return organize_data(team, stat)
 

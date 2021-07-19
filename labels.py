@@ -101,6 +101,38 @@ class MLBLabel:
             'CHW': black,
             'NYY': blue
         }
+        self.abbr = {
+            'LAA': 'Los Angeles Angels',
+            'HOU': 'Houston Astros',
+            'OAK': 'Oakland Athletics',
+            'TOR': 'Toronto Blue Jays',
+            'ATL': 'Atlanta Braves',
+            'MIL': 'Milwaukee Brewers',
+            'STL': 'St. Louis Cardinals',
+            'CHC': 'Chicago Cubs',
+            'ARI': 'Arizona Diamondbacks',
+            'LAD': 'Los Angeles Dodgers',
+            'SFG': 'San Francisco Giants',
+            'CLE': 'Cleveland Indians',
+            'SEA': 'Seattle Mariners',
+            'MIA': 'Miami Marlins',
+            'NYM': 'New York Mets',
+            'WSN': 'Washington Nationals',
+            'BAL': 'Baltimore Orioles',
+            'SDP': 'San Diego Padres',
+            'PHI': 'Philadelphia Phillies',
+            'PIT': 'Pittsburgh Pirates',
+            'TEX': 'Texas Rangers',
+            'TBR': 'Tampa Bay Rays',
+            'CIN': 'Cincinnati Reds',
+            'BOS': 'Boston Red Sox',
+            'COL': 'Colorado Rockies',
+            'KCR': 'Kansas City Royals',
+            'DET': 'Detroit Tigers',
+            'MIN': 'Minnesota Twins',
+            'CHW': 'Chicago White Sox',
+            'NYY': 'New York Yankees'
+        }
 
     def get_labels(self, data):
         labels = []

@@ -38,3 +38,6 @@ class TeamPitchingStats(TeamStats):
 
     def runs(self):
         return self.get_data('R')
+
+    def xruns(self):
+        return self.get_data('RE24')
