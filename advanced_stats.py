@@ -62,15 +62,25 @@ def run_all_graphs(year):
     # toc.display_image()
     toc.save_image()
 
-    tluck = Team2DRunDiff([tbs, tps], string_time)
-    tluck.create_image()
+    ravrf = RAvRF([tbs, tps], string_time)
+    ravrf.create_image()
     # tluck.display_image()
-    tluck.save_image()
+    ravrf.save_image()
 
-    trun_diff = RunDiff([tbs, tps], string_time)
-    trun_diff.create_image()
-    # trun_diff.display_image()
-    trun_diff.save_image()
+    xravxrf = xRAvxRF([tbs, tps], string_time)
+    xravxrf.create_image()
+    # tluck.display_image()
+    xravxrf.save_image()
+
+    trvrd = TeamRecordVsRunDif([tbs, tps], string_time)
+    trvrd.create_image()
+    # tluck.display_image()
+    trvrd.save_image()
+
+    # trun_diff = RunDiff([tbs, tps], string_time)
+    # trun_diff.create_image()
+    # # trun_diff.display_image()
+    # trun_diff.save_image()
 
 
 if __name__ == '__main__':

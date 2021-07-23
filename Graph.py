@@ -13,7 +13,7 @@ pylab.rcParams.update(params)
 
 
 class Graph2DScatter:
-    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(23, 10.4), diag_lines=True):
+    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(12.2,12), diag_lines=True, best_fit=False):
         self.x = x
         self.y = y
         self.labels = labels
@@ -23,6 +23,7 @@ class Graph2DScatter:
         self.invertx = invertx
         self.size = size
         self.diag_lines = diag_lines
+        self.best_fit = best_fit
 
     def graph(self):
         fig = plt.figure(figsize=self.size)
@@ -35,6 +36,8 @@ class Graph2DScatter:
             ax.add_artist(ab)
         ax.set_xlabel(self.axis_labels[0], fontsize=18)
         ax.set_ylabel(self.axis_labels[1], fontsize=18)
+        if self.best_fit:
+            plt.plot(np.unique(self.x), np.poly1d(np.polyfit(self.x, self.y, 1))(np.unique(self.x)), color='green')
         if self.average_lines:
             y_mean = [np.mean(self.y)] * len(self.y)
             x_mean = [np.mean(self.x)] * len(self.x)

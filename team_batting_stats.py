@@ -14,9 +14,6 @@ class TeamBattingStats(TeamStats):
     def obp_adjusted(self):
         return self.get_data('OBP+')
 
-    def xba(self):
-        return self.get_data('xBA')
-
     def average_adjusted(self):
         return self.get_data('AVG+')
 
@@ -71,6 +68,15 @@ class TeamBattingStats(TeamStats):
     def xruns(self):
         return self.get_data('RE24')
 
+    def ba(self):
+        return self.get_data('AVG')
+
+    def get_test(self):
+        return self.get_data('xwOBA')
+
+    def statcast(self):
+        return self.get_data('O-Contact% (sc)')
+
 
 def organize_data(team, stat):
     team_list, data_list, combined_list = [], [], []
@@ -84,7 +90,8 @@ def organize_data(team, stat):
 
 
 if __name__ == '__main__':
-    # tb = TeamBattingStats(2021)
-    # print(tb.data)
-    ts = team_stats.TeamStandings(2021)
-    print(ts.get_standings())
+    tb = TeamBattingStats(2021)
+    print(tb.get_test())
+    # print(tb.statcast())
+    # ts = team_stats.TeamStandings(2021)
+    # print(ts.get_standings())
