@@ -77,10 +77,10 @@ def run_all_graphs(year):
     # tluck.display_image()
     trvrd.save_image()
 
-    # trun_diff = RunDiff([tbs, tps], string_time)
-    # trun_diff.create_image()
+    trun_diff = RunDiff([tbs, tps], string_time)
+    trun_diff.create_image()
     # # trun_diff.display_image()
-    # trun_diff.save_image()
+    trun_diff.save_image()
 
 
 if __name__ == '__main__':
