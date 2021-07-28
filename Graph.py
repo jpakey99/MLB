@@ -45,7 +45,7 @@ class Graph2DScatter:
         ax.set_ylabel(self.axis_labels[1], fontsize=18)
         if self.best_fit:
             plt.plot(np.unique(self.x), np.poly1d(np.polyfit(self.x, self.y, 1))(np.unique(self.x)), color='green')
-        if self.average_lines and self.average is (None, None):
+        if self.average_lines and self.average == (None, None):
             y_mean = [np.mean(self.y)] * len(self.y)
             x_mean = [np.mean(self.x)] * len(self.x)
             ax.plot(self.x, y_mean, label='Mean', color='red')

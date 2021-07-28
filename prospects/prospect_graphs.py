@@ -1,9 +1,7 @@
 from prospects.prospects import read_file
-from labels import MLBLabel
-from PIL import Image, ImageDraw, ImageFont
-from labels import MLBLabel
 from Graph import *
 import numpy as np
+from abrstract_graph import *
 
 WIDTH, HEIGHT = 1920,1028
 
@@ -13,9 +11,9 @@ WIDTH, HEIGHT = 1920,1028
 # Ability to filter by age, games, plate appearances, position
 
 
-class ProspectGraph:
-    def __init__(self,x, y, date: str):
-        self.date = date
+class ProspectGraph(ScatterGraph):
+    def __init__(self, x, y, title, credits, subtitle, date, corner_labels):
+        super().__init__(title, credits, subtitle, date, corner_labels)
         # self.year = int(date.split('-')[2])
         self.labels = MLBLabel()
         self.image = Image.new('RGBA', (WIDTH, HEIGHT))
@@ -25,39 +23,6 @@ class ProspectGraph:
         self.sub_title_font = ImageFont.truetype('Roboto-Regular.ttf', 30)
         self.x = x
         self.y = y
-
-    def corner_label_placement(self):
-        x, y = 800, 20
-        gx, gy = self.graph_size
-        right_edge = x+ gx - 20
-        left_edge = x + 110
-        bottom_egge = y+gy-80
-        top_edge = y - 20
-        trw, trh = self.draw.textsize(self.corner_labels[0], font=self.sub_title_font)
-        brw, brh = self.draw.textsize(self.corner_labels[3], font=self.sub_title_font)
-        self.draw.text((left_edge, top_edge + trh), text=self.corner_labels[1], fill=(0, 0, 0, 255), font=self.sub_title_font)
-        self.draw.text((left_edge, bottom_egge - brh), text=self.corner_labels[3], fill=(0, 0, 0, 255), font=self.sub_title_font)
-        self.draw.text((right_edge - trw, top_edge + trh), text=self.corner_labels[0], fill=(0, 0, 0, 255), font=self.sub_title_font)
-        self.draw.text((right_edge - brw,bottom_egge - brh), text=self.corner_labels[2], fill=(0, 0, 0, 255), font=self.sub_title_font)
-
-    def title_placement(self):
-        x, y = 800, 20
-        text_box = 70
-        tw, th = self.draw.textsize(self.title, font=self.title_font)
-        sw, sh = self.draw.textsize(self.subtitle, font=self.sub_title_font)
-        cw, ch = self.draw.textsize(self.credits, font=self.sub_title_font)
-        self.draw.text(((text_box), (HEIGHT / 2) - th), text=self.title, fill=(0, 0, 0, 255), font=self.title_font)
-        self.draw.text(((text_box), (HEIGHT / 2) + (sh)), text=self.subtitle, fill=(0, 0, 0, 255), font=self.sub_title_font)
-        self.draw.text(((text_box), (HEIGHT / 2) + (2 * ch)), text=self.credits, fill=(0, 0, 0, 255), font=self.sub_title_font)
-
-    def create_image(self):
-        x, y = 800, 20
-        self.title_placement()
-        self.graph.graph().savefig('1', bbox_inches='tight')
-        g :Image.Image= Image.open('1.png')
-        self.graph_size = g.size
-        self.image.paste(g, box=(x, y))
-        self.corner_label_placement()
 
 
 class WalkRateVsWRAA(ProspectGraph):
@@ -78,17 +43,14 @@ class WalkRateVsWRAA(ProspectGraph):
                 y.append(float(prospect[9]))
                 x.append(float(prospect[12]))
         labels = MLBLabel().get_labels(team)
-        super().__init__(x, y, date)
+        title = 'Walk % Vs wRAA'
+        corner_labels = ('', '', '', '')
+        subtitle = '2021 AAA East'
+        credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
+        super().__init__(x, y, title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
         self.average =(np.mean(wRAA), np.mean(walk_rate))
-        self.title = 'Walk % Vs wRAA'
-        self.corner_labels = ('', '', '', '')
-        self.subtitle = '2021 AAA East'
-        self.credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
         print(len(self.x), len(self.y), len(labels))
         self.graph = Graph2DScatter(self.x, self.y,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=name, average=self.average)
-
-    def save_image(self):
-        self.image.save('graphs//' + 'Prosects_WalkVswRAA' + '_' + self.date + '.png')
 
 
 if __name__ == '__main__':
