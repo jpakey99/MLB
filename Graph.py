@@ -62,14 +62,15 @@ class DiagonalLines(Modifier):
         y_list, x_list = [], []
         ymid = (self.ax.get_ylim()[0] + self.ax.get_ylim()[1]) / 2
         xmid = (self.ax.get_xlim()[0] + self.ax.get_xlim()[1]) / 2
-        ysteps = (self.ax.get_ylim()[1] - self.ax.get_ylim()[0]) // (y_sdev / 2)
-        xsteps = (self.ax.get_xlim()[1] - self.ax.get_xlim()[0]) // (x_sdev)
+        ysteps = abs((self.ax.get_ylim()[1] - self.ax.get_ylim()[0]) // (y_sdev / 2))
+        xsteps = abs((self.ax.get_xlim()[1] - self.ax.get_xlim()[0]) // (x_sdev))
         print(int(0 - (ysteps / 2)), int(0 + (ysteps / 2)))
         for i in range(int(0 - (ysteps / 2)), int(0 + (ysteps / 2))):
             y_list.append(ymid + (i * y_sdev))
         for i in range(int(0 - (xsteps / 2)), int(0 + (xsteps / 2))):
             x_list.append(xmid + (i * x_sdev))
         x_list.append(x_list[-1] + x_sdev)
+        print(y_list)
         slope = (y_list[0] - y_list[-1]) / (min(x_list) - max(x_list))
         for pointx in x_list:
             # plt.scatter(x=pointx, y=ymid, color='blue')

@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 from labels import MLBLabel
+from Graph import BarGraph, Graph2DScatter
 
 
 class AbstractGraph:
@@ -24,6 +25,7 @@ class ScatterGraph(AbstractGraph):
     def __init__(self, title, credits, subtitle,date, corner_labels):
         super().__init__(title, credits, subtitle, date)
         self.corner_labels = corner_labels
+        self.graph : Graph2DScatter
 
     def corner_label_placement(self):
         x, y = 800, 20
