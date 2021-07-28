@@ -13,7 +13,11 @@ pylab.rcParams.update(params)
 
 
 class Graph2DScatter:
-    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(12.2,12), diag_lines=True, best_fit=False):
+    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(12.2,12), diag_lines=True, best_fit=False, dot_labels=None, average=(None, None)):
+        if dot_labels is None:
+            self.dot_labels = []
+        else:
+            self.dot_labels = dot_labels
         self.x = x
         self.y = y
         self.labels = labels
@@ -24,6 +28,7 @@ class Graph2DScatter:
         self.size = size
         self.diag_lines = diag_lines
         self.best_fit = best_fit
+        self.average = average
 
     def graph(self):
         fig = plt.figure(figsize=self.size)
@@ -31,6 +36,8 @@ class Graph2DScatter:
         # ax.scatter(self.x, self.y)
         for index in range(0,len(self.x)):
             image = OffsetImage(plt.imread(self.labels[index]), zoom=.13)
+            if len(self.dot_labels) > 1:
+                ax.annotate(self.dot_labels[index], (self.x[index], self.y[index]), textcoords="offset points", ha='center', xytext=(0,-25))
             ax.autoscale()
             ab = AnnotationBbox(image, (self.x[index], self.y[index]), frameon=False)
             ax.add_artist(ab)
@@ -38,9 +45,14 @@ class Graph2DScatter:
         ax.set_ylabel(self.axis_labels[1], fontsize=18)
         if self.best_fit:
             plt.plot(np.unique(self.x), np.poly1d(np.polyfit(self.x, self.y, 1))(np.unique(self.x)), color='green')
-        if self.average_lines:
+        if self.average_lines and self.average is (None, None):
             y_mean = [np.mean(self.y)] * len(self.y)
             x_mean = [np.mean(self.x)] * len(self.x)
+            ax.plot(self.x, y_mean, label='Mean', color='red')
+            ax.plot(x_mean, self.y, label='Mean', color='red')
+        elif self.average_lines:
+            y_mean = [self.average[1]] * len(self.y)
+            x_mean = [self.average[0]] * len(self.x)
             ax.plot(self.x, y_mean, label='Mean', color='red')
             ax.plot(x_mean, self.y, label='Mean', color='red')
         if self.diag_lines:
