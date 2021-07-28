@@ -12,71 +12,126 @@ params = {'xtick.labelsize': 'x-large',
 pylab.rcParams.update(params)
 
 
-class Graph2DScatter:
-    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(12.2,12), diag_lines=True, best_fit=False, dot_labels=None, average=(None, None)):
-        if dot_labels is None:
-            self.dot_labels = []
+class Modifier:
+    def add_modification(self):
+        pass
+
+
+class AverageLines(Modifier):
+    def __init__(self, ax, average, x, y):
+        self.ax = ax
+        self.x = x
+        self.y = y
+        if average == (None, None):
+            self.y_mean = [np.mean(self.y)] * len(self.y)
+            self.x_mean = [np.mean(self.x)] * len(self.x)
         else:
-            self.dot_labels = dot_labels
+            self.y_mean = [(average[1])] * len(self.y)
+            self.x_mean = [(average[0])] * len(self.x)
+
+    def add_modification(self):
+        self.ax.plot(self.x, self.y_mean, label='Mean', color='red')
+        self.ax.plot(self.x_mean, self.y, label='Mean', color='red')
+
+
+class InvertY(Modifier):
+    def __init__(self):
+        pass
+
+    def add_modification(self):
+        plt.gca().invert_yaxis()
+
+
+class InvertX(Modifier):
+    def __init__(self):
+        pass
+
+    def add_modification(self):
+        plt.gca().invert_xaxis()
+
+
+class DiagonalLines(Modifier):
+    def __init__(self, ax, x, y):
+        self.ax = ax
+        self.x = x
+        self.y = y
+
+    def add_modification(self):
+        x_sdev = stdev(self.x)
+        y_sdev = stdev(self.y)
+        y_list, x_list = [], []
+        ymid = (self.ax.get_ylim()[0] + self.ax.get_ylim()[1]) / 2
+        xmid = (self.ax.get_xlim()[0] + self.ax.get_xlim()[1]) / 2
+        ysteps = (self.ax.get_ylim()[1] - self.ax.get_ylim()[0]) // (y_sdev / 2)
+        xsteps = (self.ax.get_xlim()[1] - self.ax.get_xlim()[0]) // (x_sdev)
+        print(int(0 - (ysteps / 2)), int(0 + (ysteps / 2)))
+        for i in range(int(0 - (ysteps / 2)), int(0 + (ysteps / 2))):
+            y_list.append(ymid + (i * y_sdev))
+        for i in range(int(0 - (xsteps / 2)), int(0 + (xsteps / 2))):
+            x_list.append(xmid + (i * x_sdev))
+        x_list.append(x_list[-1] + x_sdev)
+        slope = (y_list[0] - y_list[-1]) / (min(x_list) - max(x_list))
+        for pointx in x_list:
+            # plt.scatter(x=pointx, y=ymid, color='blue')
+            plt.axline((pointx, ymid), slope=slope, color='gray')
+
+
+class BestFit(Modifier):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def add_modification(self):
+        plt.plot(np.unique(self.x), np.poly1d(np.polyfit(self.x, self.y, 1))(np.unique(self.x)), color='green')
+
+
+class PointLabels(Modifier):
+    def __init__(self, ax, x, y, labels):
+        self.ax = ax
         self.x = x
         self.y = y
         self.labels = labels
-        self.average_lines = average_lines
+
+    def add_modification(self):
+        for index in range(0, len(self.x)):
+            self.ax.annotate(self.labels[index], (self.x[index], self.y[index]), textcoords="offset points", ha='center', xytext=(0, -25))
+
+
+class Graph2DScatter:
+    def __init__(self, x, y, labels, axis_labels, average_lines=True, inverty=False, invertx=False, size=(12.2,12), diag_lines=True, best_fit=False, dot_labels=None, average=(None, None)):
+        self.modifiers = []
+        self.x = x
+        self.y = y
+        self.labels = labels
+        self.fig = plt.figure(figsize=size)
+        self.ax = self.fig.add_subplot()
+        if dot_labels is None:
+            self.dot_labels = []
+        else:
+            self.modifiers.append(PointLabels(self.ax, self.x, self.y, dot_labels))
+        if average_lines:
+            self.modifiers.append(AverageLines(self.ax, average, x=self.x, y=self.y))
         self.axis_labels = axis_labels
-        self.inverty = inverty
-        self.invertx = invertx
-        self.size = size
-        self.diag_lines = diag_lines
-        self.best_fit = best_fit
-        self.average = average
+        if inverty:
+            self.modifiers.append(InvertY())
+        if invertx:
+            self.modifiers.append(InvertX())
+        if diag_lines:
+            self.modifiers.append(DiagonalLines(self.ax, self.x, self.y))
+        if best_fit:
+            self.modifiers.append(BestFit(self.x, self.y))
 
     def graph(self):
-        fig = plt.figure(figsize=self.size)
-        ax = fig.add_subplot()
         # ax.scatter(self.x, self.y)
         for index in range(0,len(self.x)):
             image = OffsetImage(plt.imread(self.labels[index]), zoom=.13)
-            if len(self.dot_labels) > 1:
-                ax.annotate(self.dot_labels[index], (self.x[index], self.y[index]), textcoords="offset points", ha='center', xytext=(0,-25))
-            ax.autoscale()
+            self.ax.autoscale()
             ab = AnnotationBbox(image, (self.x[index], self.y[index]), frameon=False)
-            ax.add_artist(ab)
-        ax.set_xlabel(self.axis_labels[0], fontsize=18)
-        ax.set_ylabel(self.axis_labels[1], fontsize=18)
-        if self.best_fit:
-            plt.plot(np.unique(self.x), np.poly1d(np.polyfit(self.x, self.y, 1))(np.unique(self.x)), color='green')
-        if self.average_lines and self.average == (None, None):
-            y_mean = [np.mean(self.y)] * len(self.y)
-            x_mean = [np.mean(self.x)] * len(self.x)
-            ax.plot(self.x, y_mean, label='Mean', color='red')
-            ax.plot(x_mean, self.y, label='Mean', color='red')
-        elif self.average_lines:
-            y_mean = [self.average[1]] * len(self.y)
-            x_mean = [self.average[0]] * len(self.x)
-            ax.plot(self.x, y_mean, label='Mean', color='red')
-            ax.plot(x_mean, self.y, label='Mean', color='red')
-        if self.diag_lines:
-            x_sdev = stdev(self.x)
-            y_sdev = stdev(self.y)
-            y_list, x_list = [], []
-            ymid = (ax.get_ylim()[0] + ax.get_ylim()[1])/2
-            xmid = (ax.get_xlim()[0] + ax.get_xlim()[1]) / 2
-            ysteps = (ax.get_ylim()[1] - ax.get_ylim()[0])//(y_sdev/2)
-            xsteps = (ax.get_xlim()[1] - ax.get_xlim()[0]) // (x_sdev)
-            print(int(0-(ysteps/2)), int(0+(ysteps/2)))
-            for i in range(int(0-(ysteps/2)), int(0+(ysteps/2))):
-                y_list.append(ymid + (i*y_sdev))
-            for i in range(int(0-(xsteps/2)), int(0+(xsteps/2))):
-                x_list.append(xmid + (i * x_sdev))
-            x_list.append(x_list[-1] + x_sdev)
-            slope = (y_list[0] - y_list[-1]) / (min(x_list) - max(x_list))
-            for pointx in x_list:
-                # plt.scatter(x=pointx, y=ymid, color='blue')
-                plt.axline((pointx, ymid), slope=slope, color='gray')
-        if self.inverty:
-            plt.gca().invert_yaxis()
-        if self.invertx:
-            plt.gca().invert_xaxis()
+            self.ax.add_artist(ab)
+        self.ax.set_xlabel(self.axis_labels[0], fontsize=18)
+        self.ax.set_ylabel(self.axis_labels[1], fontsize=18)
+        for modifier in self.modifiers:
+            modifier.add_modification()
         return plt
 
 
