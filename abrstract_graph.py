@@ -21,7 +21,7 @@ class AbstractGraph:
         self.image.save('graphs//' + self.title + '_' + self.date + '.png')
 
 
-class ScatterGraph(AbstractGraph):
+class AbstractScatterGraph(AbstractGraph):
     def __init__(self, title, credits, subtitle,date, corner_labels):
         super().__init__(title, credits, subtitle, date)
         self.corner_labels = corner_labels
@@ -59,3 +59,8 @@ class ScatterGraph(AbstractGraph):
         self.graph_size = g.size
         self.image.paste(g, box=(x, y))
         self.corner_label_placement()
+
+
+class AbstractBarGraph(AbstractGraph):
+    def __init__(self, title, credits, subtitle, date):
+        super().__init__(title, credits, subtitle, date)

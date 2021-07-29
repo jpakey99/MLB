@@ -4,7 +4,7 @@ from team_pitching_stats import TeamPitchingStats
 from labels import MLBLabel
 from team_stats import *
 import database
-from abrstract_graph import ScatterGraph, AbstractGraph
+from abrstract_graph import AbstractScatterGraph, AbstractGraph
 from statistics import stdev
 from Graph import *
 
@@ -12,7 +12,7 @@ from Graph import *
 WIDTH, HEIGHT = 1920,1028
 
 
-class TeamStatViz(ScatterGraph):
+class TeamStatViz(AbstractScatterGraph):
     def __init__(self, team_stats: [TeamBattingStats, TeamPitchingStats], date: str, title, credits, subtitle, corner_labels):
         super().__init__(title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
         self.batting_stats:TeamBattingStats = team_stats[0]

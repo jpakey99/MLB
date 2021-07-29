@@ -5,14 +5,15 @@ from abrstract_graph import *
 
 WIDTH, HEIGHT = 1920,1028
 
+Season,Name,Team,Level,Age,G,PA,AVG,BBP,KP,ISO,BABIP,wRAA,wOBA,wRCa,LDP,GBP,FBP,PullP,CentP,OppoP,SwStrP,Pitches,PlayerId = range(0, 24)
 
 # for leagues of the same level: get mean, std, and z_score of that league but combine on 1 graph
 # Ability to show 1 or more teams
 # Ability to filter by age, games, plate appearances, position
 
 
-class ProspectGraph(ScatterGraph):
-    def __init__(self, x, y, title, credits, subtitle, date, corner_labels):
+class ProspectGraphAbstract(AbstractScatterGraph):
+    def __init__(self, title, credits, subtitle, date, corner_labels):
         super().__init__(title, credits, subtitle, date, corner_labels)
         # self.year = int(date.split('-')[2])
         self.labels = MLBLabel()
@@ -21,36 +22,44 @@ class ProspectGraph(ScatterGraph):
         self.draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(255, 255, 255, 255))
         self.title_font = ImageFont.truetype('Roboto-Regular.ttf', 50)
         self.sub_title_font = ImageFont.truetype('Roboto-Regular.ttf', 30)
-        self.x = x
-        self.y = y
+        self.x = []
+        self.y = []
+        self.team, self.name = [], []
+        self.stat1, self.stat2 = [], []
 
-
-class WalkRateVsWRAA(ProspectGraph):
-    def __init__(self, date: str, show_teams=None):
-        prospects = read_file('prospects/AAA_East.csv')
-        walk_rate, wRAA, team, name, x, y = [], [], [], [], [], []
+    def get_data(self, stat1, stat2, year, filename, show_teams=None, all=False):
+        prospects = read_file(filename)
         for prospect in prospects:
-            walk_rate.append(float(prospect[9]))
-            wRAA.append(float(prospect[12]))
-            if show_teams == None:
-                team.append(prospect[2].strip('"'))
-                name.append(prospect[1].strip('"'))
-                y.append(float(prospect[9]))
-                x.append(float(prospect[12]))
-            elif prospect[2].strip('"') in show_teams:
-                team.append(prospect[2].strip('"'))
-                name.append(prospect[1].strip('"'))
-                y.append(float(prospect[9]))
-                x.append(float(prospect[12]))
-        labels = MLBLabel().get_labels(team)
+            games, pa = int(prospect[G]), int(prospect[PA])
+            if games > 20 and pa / games > 1:
+                self.stat1.append(float(prospect[stat1]))
+                self.stat2.append(float(prospect[stat2]))
+                if show_teams is None:
+                    if int(prospect[0]) == int(year) or all:
+                        self.team.append(prospect[2].strip('"'))
+                        self.name.append(prospect[1].strip('"'))
+                        self.y.append(float(prospect[stat1]))
+                        self.x.append(float(prospect[stat2]))
+                elif prospect[2].strip('"') in show_teams:
+                    if int(prospect[0]) == int(year) or all:
+                        self.team.append(prospect[2].strip('"'))
+                        self.name.append(prospect[1].strip('"'))
+                        self.y.append(float(prospect[stat1]))
+                        self.x.append(float(prospect[stat2]))
+
+
+class WalkRateVsWRAA(ProspectGraphAbstract):
+    def __init__(self, date: str, show_teams=None, all=False):
         title = 'Walk % Vs wRAA'
         corner_labels = ('', '', '', '')
         subtitle = '2021 AAA East'
         credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
-        super().__init__(x, y, title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
-        self.average =(np.mean(wRAA), np.mean(walk_rate))
+        super().__init__(title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
+        self.get_data(BBP, wRAA, date, 'prospects/batting_data/AAA_EAST_2006_2021.csv', show_teams=show_teams, all=all)
+        labels = MLBLabel().get_labels(self.team)
+        self.average =(np.mean(self.x), np.mean(self.y))
         print(len(self.x), len(self.y), len(labels))
-        self.graph = Graph2DScatter(self.x, self.y,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=name, average=self.average)
+        self.graph = Graph2DScatter(self.x, self.y,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=self.name, average=self.average)
 
 
 if __name__ == '__main__':
