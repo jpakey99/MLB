@@ -8,6 +8,6 @@ from draft.ValueAdded import ValueAdded
 # va.save_image()
 
 
-g = WalkRateVsWRAA('2008', all=False, show_teams=['PIT'])
+g = WalkRateVsWRAA('2021', all=False)
 g.create_image()
 g.save_image()

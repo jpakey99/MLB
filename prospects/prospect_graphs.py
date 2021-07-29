@@ -2,6 +2,7 @@ from prospects.prospects import read_file
 from Graph import *
 import numpy as np
 from abrstract_graph import *
+import os
 
 WIDTH, HEIGHT = 1920,1028
 
@@ -22,30 +23,42 @@ class ProspectGraphAbstract(AbstractScatterGraph):
         self.draw.rectangle((0, 0, WIDTH, HEIGHT), fill=(255, 255, 255, 255))
         self.title_font = ImageFont.truetype('Roboto-Regular.ttf', 50)
         self.sub_title_font = ImageFont.truetype('Roboto-Regular.ttf', 30)
-        self.x = []
-        self.y = []
+        self.x, self.zx = [], []
+        self.y, self.zy = [], []
         self.team, self.name = [], []
         self.stat1, self.stat2 = [], []
 
-    def get_data(self, stat1, stat2, year, filename, show_teams=None, all=False):
-        prospects = read_file(filename)
-        for prospect in prospects:
-            games, pa = int(prospect[G]), int(prospect[PA])
-            if games > 20 and pa / games > 1:
-                self.stat1.append(float(prospect[stat1]))
-                self.stat2.append(float(prospect[stat2]))
-                if show_teams is None:
-                    if int(prospect[0]) == int(year) or all:
-                        self.team.append(prospect[2].strip('"'))
-                        self.name.append(prospect[1].strip('"'))
-                        self.y.append(float(prospect[stat1]))
-                        self.x.append(float(prospect[stat2]))
-                elif prospect[2].strip('"') in show_teams:
-                    if int(prospect[0]) == int(year) or all:
-                        self.team.append(prospect[2].strip('"'))
-                        self.name.append(prospect[1].strip('"'))
-                        self.y.append(float(prospect[stat1]))
-                        self.x.append(float(prospect[stat2]))
+    def add_prospect(self, prospect, stat1, stat2):
+        self.team.append(prospect[2].strip('"'))
+        self.name.append(prospect[1].strip('"'))
+        self.y.append(float(prospect[stat1]))
+        self.x.append(float(prospect[stat2]))
+
+    def get_data(self, stat1, stat2, year, level, show_teams=None, all=False):
+        for file in os.listdir('prospects/batting_data/'):
+            if level in file:
+                prospects = read_file('prospects/batting_data/' + file)
+                for prospect in prospects:
+                    games, pa = int(prospect[G]), int(prospect[PA])
+                    if games > 20 and pa / games > 1:
+                        self.stat1.append(float(prospect[stat1]))
+                        self.stat2.append(float(prospect[stat2]))
+                        if show_teams is None:
+                            if int(prospect[0]) == int(year) or all:
+                                self.add_prospect(prospect, stat1, stat2)
+                        elif prospect[2].strip('"') in show_teams:
+                            if int(prospect[0]) == int(year) or all:
+                                self.add_prospect(prospect, stat1, stat2)
+                self.average = (np.mean(self.x), np.mean(self.y))
+                for i in range(0, len(self.x)):
+                    self.zx.append(self.find_z_score(self.average[0], self.x[i], self.x))
+                    self.zy.append(self.find_z_score(self.average[1], self.y[i], self.y))
+                self.x, self.y = [], []
+
+    def find_z_score(self, mean, value, data):
+        top = value - mean
+        bottom = stdev(data)
+        return top / bottom
 
 
 class WalkRateVsWRAA(ProspectGraphAbstract):
@@ -55,11 +68,11 @@ class WalkRateVsWRAA(ProspectGraphAbstract):
         subtitle = '2021 AAA East'
         credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
         super().__init__(title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
-        self.get_data(BBP, wRAA, date, 'prospects/batting_data/AAA_EAST_2006_2021.csv', show_teams=show_teams, all=all)
+        self.get_data(BBP, wRAA, date, 'AAA', show_teams=show_teams, all=all)
         labels = MLBLabel().get_labels(self.team)
-        self.average =(np.mean(self.x), np.mean(self.y))
-        print(len(self.x), len(self.y), len(labels))
-        self.graph = Graph2DScatter(self.x, self.y,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=self.name, average=self.average)
+        avg = (np.mean(self.zx), np.mean(self.zy))
+        print(len(self.zx), len(self.zy), len(labels))
+        self.graph = Graph2DScatter(self.zx, self.zy,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=self.name, average=avg)
 
 
 if __name__ == '__main__':
