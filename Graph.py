@@ -154,8 +154,7 @@ class BarGraph:
         fig = plt.figure(figsize=(23, 10.7))
         ax = fig.add_subplot()
         if self.colors is None:
-            print(self.x, self.y)
-            plt.bar(self.x, self.y)
+            plt.bar(self.x, self.y, edgecolor='black', linewidth=2,)
         else:
             plt.bar(self.x, self.y, edgecolor='black', linewidth=2, color=self.colors)
         plt.margins(0.01, 0.01)
