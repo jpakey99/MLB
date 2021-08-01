@@ -65,10 +65,10 @@ class WalkRateVsWRAA(ProspectGraphAbstract):
     def __init__(self, date: str, show_teams=None, all=False):
         title = 'Walk % Vs wRAA'
         corner_labels = ('', '', '', '')
-        subtitle = '2021 AAA East'
+        subtitle = '2021 AA East'
         credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
         super().__init__(title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
-        self.get_data(BBP, wRAA, date, 'AAA', show_teams=show_teams, all=all)
+        self.get_data(BBP, wRAA, date, 'AA', show_teams=show_teams, all=all)
         labels = MLBLabel().get_labels(self.team)
         avg = (np.mean(self.zx), np.mean(self.zy))
         print(len(self.zx), len(self.zy), len(labels))
