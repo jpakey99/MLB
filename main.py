@@ -24,8 +24,8 @@ def prospect_graphs():
 def run_team_graphs(year):
     time = datetime.datetime.now()
     string_time = time.strftime("%m-%d-%Y")
-    tps = TeamPitchingStats(2021)
-    tbs = TeamBattingStats(2021)
+    tps = TeamPitchingStats(year)
+    tbs = TeamBattingStats(year)
     toc = TeamOverall([tbs, tps], string_time)
     toc.create_image()
     # toc.display_image()
