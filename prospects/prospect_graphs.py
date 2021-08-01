@@ -36,7 +36,8 @@ class ProspectGraphAbstract(AbstractScatterGraph):
 
     def get_data(self, stat1, stat2, year, level, show_teams=None, all=False):
         for file in os.listdir('prospects/batting_data/'):
-            if level in file:
+            file_level = file.split('_')[0]
+            if level == file_level:
                 prospects = read_file('prospects/batting_data/' + file)
                 for prospect in prospects:
                     games, pa = int(prospect[G]), int(prospect[PA])
@@ -66,13 +67,28 @@ class WalkRateVsWRAA(ProspectGraphAbstract):
         title = 'Walk % Vs wRAA'
         corner_labels = ('', '', '', '')
         subtitle = '2021 AA East'
-        credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'  #Fine tone centering 2nd line
+        credits = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'
         super().__init__(title=title, credits=credits, subtitle=subtitle, date=date, corner_labels=corner_labels)
         self.get_data(BBP, wRAA, date, 'AA', show_teams=show_teams, all=all)
         labels = MLBLabel().get_labels(self.team)
         avg = (np.mean(self.zx), np.mean(self.zy))
         print(len(self.zx), len(self.zy), len(labels))
         self.graph = Graph2DScatter(self.zx, self.zy,labels=labels, axis_labels=['wRAA', 'Walk%'], average_lines=True, inverty=False, invertx=False, diag_lines=False, dot_labels=self.name, average=avg)
+
+
+class WalkRateVsAge(ProspectGraphAbstract):
+    def __init__(self, date, level, show_teams=None, all=False):
+        title = 'Walk Rate Vs Age'
+        corner_labels = ('', '', '', '')
+        subtitle = '2021 AA East'
+        credit = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'
+        super().__init__(title, credit, subtitle, date, corner_labels)
+        self.get_data(Age, BBP, date, level, show_teams=show_teams, all=all)
+        labels = MLBLabel().get_labels(self.team)
+        avg = (np.mean(self.zx), np.mean(self.zy))
+        print(len(self.zx), len(self.zy), len(labels))
+        self.graph = Graph2DScatter(self.zx, self.zy, labels=labels, axis_labels=['Walk% z-score', 'Age z-score'], average_lines=True, inverty=True, invertx=False, diag_lines=True, dot_labels=self.name,
+                                    average=avg)
 
 
 if __name__ == '__main__':

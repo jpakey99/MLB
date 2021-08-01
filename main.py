@@ -1,4 +1,4 @@
-from prospects.prospect_graphs import WalkRateVsWRAA
+from prospects.prospect_graphs import *
 from draft.ValueAdded import *
 from draft.ValueAdded import ValueAdded
 from TeamViz import *
@@ -17,6 +17,10 @@ def value_added():
 
 def prospect_graphs():
     g = WalkRateVsWRAA('2021', all=False, show_teams=['TOR', 'CLE'])
+    g.create_image()
+    g.save_image()
+
+    g = WalkRateVsAge('2021', level='AA', all=False, show_teams=['PIT'])
     g.create_image()
     g.save_image()
 
