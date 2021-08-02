@@ -6,7 +6,9 @@ import datetime
 
 
 def test():
-    pass
+    g = KPVsAge('2021', level='AA', all=False, show_teams=['PIT'])
+    g.create_image()
+    g.save_image()
 
 
 def value_added():
@@ -21,6 +23,10 @@ def prospect_graphs():
     g.save_image()
 
     g = WalkRateVsAge('2021', level='AA', all=False, show_teams=['PIT'])
+    g.create_image()
+    g.save_image()
+
+    g = KPVsAge('2021', level='AA', all=False, show_teams=['PIT'])
     g.create_image()
     g.save_image()
 

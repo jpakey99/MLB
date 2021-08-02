@@ -91,6 +91,21 @@ class WalkRateVsAge(ProspectGraphAbstract):
                                     average=avg)
 
 
+class KPVsAge(ProspectGraphAbstract):
+    def __init__(self, date, level, show_teams=None, all=False):
+        title = 'Strikeout Rate Vs Age'
+        corner_labels = ('', '', '', '')
+        subtitle = '2021 AA East'
+        credit = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'
+        super().__init__(title, credit, subtitle, date, corner_labels)
+        self.get_data(Age, KP, date, level, show_teams=show_teams, all=all)
+        labels = MLBLabel().get_labels(self.team)
+        avg = (np.mean(self.zx), np.mean(self.zy))
+        print(len(self.zx), len(self.zy), len(labels))
+        self.graph = Graph2DScatter(self.zx, self.zy, labels=labels, axis_labels=['K% z-score', 'Age z-score'], average_lines=True, inverty=True, invertx=False, diag_lines=True, dot_labels=self.name,
+                                    average=avg)
+
+
 if __name__ == '__main__':
     prospects = read_file('AAA_East.csv')
     walk_rate, wRAA, team = [], [], []
