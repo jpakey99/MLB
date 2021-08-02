@@ -42,14 +42,15 @@ class ProspectGraphAbstract(AbstractScatterGraph):
                 for prospect in prospects:
                     games, pa = int(prospect[G]), int(prospect[PA])
                     if games > 20 and pa / games > 1:
-                        self.stat1.append(float(prospect[stat1]))
-                        self.stat2.append(float(prospect[stat2]))
-                        if show_teams is None:
-                            if int(prospect[0]) == int(year) or all:
-                                self.add_prospect(prospect, stat1, stat2)
-                        elif prospect[2].strip('"') in show_teams:
-                            if int(prospect[0]) == int(year) or all:
-                                self.add_prospect(prospect, stat1, stat2)
+                        if prospect[stat1] != '':
+                            self.stat1.append(float(prospect[stat1]))
+                            self.stat2.append(float(prospect[stat2]))
+                            if show_teams is None:
+                                if int(prospect[0]) == int(year) or all:
+                                    self.add_prospect(prospect, stat1, stat2)
+                            elif prospect[2].strip('"') in show_teams:
+                                if int(prospect[0]) == int(year) or all:
+                                    self.add_prospect(prospect, stat1, stat2)
                 self.average = (np.mean(self.x), np.mean(self.y))
                 for i in range(0, len(self.x)):
                     self.zx.append(self.find_z_score(self.average[0], self.x[i], self.x))
@@ -104,6 +105,22 @@ class KPVsAge(ProspectGraphAbstract):
         print(len(self.zx), len(self.zy), len(labels))
         self.graph = Graph2DScatter(self.zx, self.zy, labels=labels, axis_labels=['K% z-score', 'Age z-score'], average_lines=True, inverty=True, invertx=False, diag_lines=True, dot_labels=self.name,
                                     average=avg)
+
+
+class PullVsOppo(ProspectGraphAbstract):
+    def __init__(self, date, level, show_teams=None, all=False):
+        title = 'Pull vs Oppo Rates'
+        corner_labels = ('', '', '', '')
+        subtitle = '2021 AA East'
+        credit = 'Twitter: @jpakey99, Idea: @ShutdownLine\n data: Fangraphs'
+        super().__init__(title, credit, subtitle, date, corner_labels)
+        self.get_data(PullP, OppoP, date, level, show_teams=show_teams, all=all)
+        labels = MLBLabel().get_labels(self.team)
+        avg = (np.mean(self.zx), np.mean(self.zy))
+        print(len(self.zx), len(self.zy), len(labels))
+        self.graph = Graph2DScatter(self.zx, self.zy, labels=labels, axis_labels=['Hits to Opposite Way % z-score', 'Hits to Pull Way % z-score'], average_lines=True, inverty=False, invertx=False, diag_lines=True, dot_labels=self.name,
+                                    average=avg)
+
 
 
 if __name__ == '__main__':
